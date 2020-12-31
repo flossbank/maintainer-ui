@@ -1,0 +1,21 @@
+@import "./_variables";
+@import "./_utilities";
+@import "./_stripe_styles";
+
+// TODO: Move this to a _global.scss file
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: $boulder;
+}
+
+button:focus,
+a:focus {
+  transition: none;
+  outline: 2px solid $boulder;
+  outline-offset: 0.25rem;
+  // removes focus style being applied by some other CSS
+  box-shadow: none !important;
+}

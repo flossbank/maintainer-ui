@@ -1,0 +1,19 @@
+@import "../../styles/_variables";
+
+.donateInput {
+  font-size: 1rem !important;
+  font-family: inherit !important;
+  color: $boulder !important;
+  padding: 1rem;
+  border-radius: 5px !important;
+  border: 1px solid #868686 !important;
+  background: white !important;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  height: auto !important;
+
+  &:focus {
+    border: 1px solid $ocean !important;
+    box-shadow: inset 0 0 0 1px $ocean !important;
+  }
+}

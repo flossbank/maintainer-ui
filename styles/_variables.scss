@@ -1,0 +1,52 @@
+// font-sizing
+$font-lg: 2.25rem;
+$font-default: 0.875rem;
+$font-sm: 0.75rem;
+
+// colors
+// $lightblue: #529ed6;
+// $blue: #2e65a8;
+// $grayblue: #d7e6f6;
+
+// $gray0: #f2f2f2;
+// $gray: #5f6771;
+// $gray2: #606771;
+// $gray3: #404042;
+
+$ocean: #2b67af;
+$lake: #529ed6;
+$puddle: #d7e6f6;
+$rock: #5f6771;
+$boulder: #404042;
+$lightRock: #f2f2f2;
+
+$white: #fff;
+
+// border
+$radius: 11px;
+
+// mixins
+
+@mixin largescreensizer() {
+  @media (min-width: 1450px) {
+    margin: 0 auto;
+    width: 1200px;
+  }
+}
+
+@mixin smallbold() {
+  font-size: $font-sm;
+  font-weight: bold;
+}
+
+@mixin flexpagewidth() {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 80px;
+  box-sizing: border-box;
+  @media (max-width: 768px) {
+    padding: 36px;
+  }
+}

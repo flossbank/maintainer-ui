@@ -1,0 +1,4 @@
+// removes the red asterisk from the login/signup form (since it's just one input, it's of course required)
+.label > span {
+  display: none !important;
+}
