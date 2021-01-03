@@ -24,7 +24,7 @@ const FAQ = () => (
         <Text marginBottom='1.5rem'>
           Donations are distributed based on the usage of your package in the dependency tree. For example,
           if your package is used along side one other dependency in a project, and the company donates 10 dollars,
-          you will receive 5 dollars as you'd split it with the other dependency. 
+          you will receive 5 dollars as you'd split it with the other dependency.
         </Text>
         <Divider />
         <FAQHeading textAlign='center'>I still have a question</FAQHeading>

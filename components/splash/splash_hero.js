@@ -14,7 +14,7 @@ const SplashHero = () => (
     backgroundColor='lightRock'
   >
     <Flex flexDirection='column' width={['100%', '30rem']} paddingTop={['0', '8rem']}>
-      <UnderlinedHeading text='Enterprise' />
+      <UnderlinedHeading text='Maintainer Portal' />
       <Subheading>
         Receive compensation for your value
       </Subheading>

@@ -4,7 +4,7 @@ import FullLogo from './fullLogo'
 import FBLogoLetters from './logoLetters'
 
 import { useLocalStorage } from '../../../utils/useLocalStorage'
-import { localStorageOrgKey } from '../../../utils/constants'
+import { localStorageMaintainerKey } from '../../../utils/constants'
 
 /*
 We're doing it this way, using media queries to decide which logo to show, because
@@ -13,8 +13,8 @@ Even that short amount of time for the useMedia hook to run was long enough to c
 */
 
 const FBLogo = ({ authed }) => {
-  const [currentOrgId, _] = useLocalStorage(localStorageOrgKey, '') // eslint-disable-line
-  const href = authed ? `/organization/${currentOrgId}` : '/'
+  const [currentMaintainerId, _] = useLocalStorage(localStorageMaintainerKey, '') // eslint-disable-line
+  const href = authed ? `/organization/${currentMaintainerId}` : '/'
 
   return (
     <Link href={href}>

@@ -4,6 +4,14 @@ export const completeGHLogin = async ({ code, state }) => {
   return fetchThenJson('api/organization/github-auth', optionsWithPostBody({ code, state }))
 }
 
+export const fetchPackagesByName = async ({ name }) => {
+  return fetchThenJson(`api/package/search-by-name?name=${name}`, optionsGetRequest())
+}
+
+export const getMaintainer = async ({ maintainerId }) => {
+  return fetchThenJson(`api/maintainer/get?maintainerId=${maintainerId}`, optionsGetRequest())
+}
+
 export const logout = async () => {
   return fetchThenJson('api/organization/logout', optionsWithPostBody())
 }
@@ -40,27 +48,6 @@ const optionsWithPostBody = (body) => {
       'x-requested-with': 'XmlHttpRequest'
     },
     body: JSON.stringify(body)
-  }
-}
-
-const optionsWithPutBody = (body) => {
-  return {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-requested-with': 'XmlHttpRequest'
-    },
-    body: JSON.stringify(body)
-  }
-}
-
-const optionsDeleteRequest = () => {
-  return {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-requested-with': 'XmlHttpRequest'
-    }
   }
 }
 

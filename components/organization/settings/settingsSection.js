@@ -6,28 +6,28 @@ import UnderlinedHeading from '../../common/underlinedHeading'
 import Banner from '../../common/banner'
 
 import BillingInformationSection from './billingInformationSection'
-import { getOrganization } from '../../../client'
+import { getMaintainer } from '../../../client'
 
 import { useLocalStorage } from '../../../utils/useLocalStorage'
-import { localStorageOrgKey } from '../../../utils/constants'
+import { localStorageMaintainerKey } from '../../../utils/constants'
 
-const OrgSettingsSection = () => {
-  const [orgLoading, setOrgLoading] = useState(true)
-  const [org, setOrg] = useState(undefined)
+const MaintainerSettingsSection = () => {
+  const [loading, setLoading] = useState(true)
+  const [maintainer, setMaintainer] = useState(undefined)
 
-  const [currentOrgId, _] = useLocalStorage(localStorageOrgKey, '') // eslint-disable-line  
+  const [currentMaintainerId, _] = useLocalStorage(localStorageMaintainerKey, '') // eslint-disable-line  
 
-  async function fetchOrg () {
+  async function fetchMaintainer () {
     try {
-      const res = await getOrganization({ orgId: currentOrgId })
-      setOrg(res.organization)
+      const res = await getMaintainer({ maintainerId: currentMaintainerId })
+      setMaintainer(res.maintainer)
     } catch (e) {} finally {
-      setOrgLoading(false)
+      setLoading(false)
     }
   }
 
   useEffect(() => {
-    fetchOrg()
+    fetchMaintainer()
   }, [])
   return (
     <Section
@@ -44,15 +44,15 @@ const OrgSettingsSection = () => {
         align='center'
         marginBottom='3rem'
       />
-      {orgLoading && <CircularProgress isIndeterminate color='ocean' />}
+      {loading && <CircularProgress isIndeterminate color='ocean' />}
       {/** Only show billing info section if billing info returned from API */}
-      {org && org.billingInfo && <BillingInformationSection org={org} />}
+      {maintainer && maintainer.billingInfo && <BillingInformationSection maintainer={maintainer} />}
       {/** Otherwise, notify user they must log in to see org settings */}
-      {!orgLoading && (!org || !org.billingInfo) && (
+      {!loading && (!maintainer || !maintainer.billingInfo) && (
         <>
           <Banner icon='info' onCloseClick={() => {}}>
             <Text color='rock'>
-              You must be logged in to view organization settings
+              You must be logged in to view settings
             </Text>
           </Banner>
         </>
@@ -61,4 +61,4 @@ const OrgSettingsSection = () => {
   )
 }
 
-export default OrgSettingsSection
+export default MaintainerSettingsSection

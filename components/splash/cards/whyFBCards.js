@@ -2,25 +2,25 @@ import { List, ListItem, Icon, Box, Text } from '@chakra-ui/core'
 
 const cardData = [
   {
-    heading: 'Fortify your code base',
+    heading: 'No self promotion',
     icon: 'lock',
-    text: 'Your company relies on the maintenance and integrity of Open Source. Make sure the maintainers have the resources needed to not only maintain, but improve the code your company relies on.'
+    text: 'No self promotion, no writing blog posts. Get compensated directly to your bank account if your code is used. That\'s it'
   },
   {
     heading: 'Easy',
     icon: 'clock',
     text:
-      'Set up a monthly donation that can be cancelled at any time in less than 1 minute.'
+      'Prove ownership of packages, choose your payout method, and get paid. As easy as that.'
   },
   {
-    heading: 'Build your brand',
+    heading: 'Sustainable',
     icon: 'duotoneStar',
-    text: 'Based on your donation amount, you will receive a Flossbank badge to show that you value the work open source maintainers provide.'
+    text: 'Each night, we\'ll use your registry username to ensure we are compensating you for every package you publish. Sign up once, never log in again.'
   },
   {
     heading: 'Equitable',
     icon: 'equitable',
-    text: 'Flossbank compensates every open source dependency you have, not just those with name recognition.'
+    text: 'If maintaining your packages is a team effort, manage distribution of package revenue through the Flossbank maintainer portal.'
   }
 ]
 

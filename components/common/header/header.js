@@ -43,8 +43,8 @@ const Header = () => {
             {!user && (
               <>
                 <TextLink
-                  href='/find-organization'
-                  text='Search Organizations'
+                  href='/find-packages'
+                  text='Search Packages'
                   color='boulder'
                   padding='.25em'
                 />

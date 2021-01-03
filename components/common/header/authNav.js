@@ -15,11 +15,11 @@ import {
 } from '@chakra-ui/core'
 
 import { useLocalStorage } from '../../../utils/useLocalStorage'
-import { localStorageOrgKey } from '../../../utils/constants'
+import { localStorageMaintainerKey } from '../../../utils/constants'
 
 const AuthNav = ({ user, onLogout }) => {
   const router = useRouter()
-  const [currentOrgId, _] = useLocalStorage(localStorageOrgKey, '') // eslint-disable-line
+  const [currentMaintainerId, _] = useLocalStorage(localStorageMaintainerKey, '') // eslint-disable-line
 
   const [isExpanded, setIsExpanded] = useState(false)
   const { colors } = useTheme()
@@ -90,9 +90,9 @@ const AuthNav = ({ user, onLogout }) => {
             <MenuItem
               _focus={itemFocusStyles}
               _active={itemActiveStyles}
-              onClick={() => handleNav(`/organization/${currentOrgId}`)}
+              onClick={() => handleNav(`/organization/${currentMaintainerId}`)}
             >
-              <Link href={`/organization/${currentOrgId}`}>
+              <Link href={`/organization/${currentMaintainerId}`}>
                 <a>
                   <Box as='span' display='flex' alignItems='center'>
                     <Icon name='home' marginRight='.5rem' />
@@ -104,13 +104,13 @@ const AuthNav = ({ user, onLogout }) => {
             <MenuItem
               _focus={itemFocusStyles}
               _active={itemActiveStyles}
-              onClick={() => handleNav('/find-organization')}
+              onClick={() => handleNav('/find-packages')}
             >
-              <Link href='/find-organization'>
+              <Link href='/find-packages'>
                 <a>
                   <Box as='span' display='flex' alignItems='center'>
                     <Icon name='search' marginRight='.5rem' />
-                    <span>Search organizations</span>
+                    <span>Search packages</span>
                   </Box>
                 </a>
               </Link>
@@ -146,9 +146,9 @@ const AuthNav = ({ user, onLogout }) => {
             <MenuItem
               _focus={itemFocusStyles}
               _active={itemActiveStyles}
-              onClick={() => handleNav(`/organization/${currentOrgId}/settings`)}
+              onClick={() => handleNav(`/organization/${currentMaintainerId}/settings`)}
             >
-              <Link href={`/organization/${currentOrgId}/settings`}>
+              <Link href={`/organization/${currentMaintainerId}/settings`}>
                 <a>
                   <Box as='span' display='flex' alignItems='center'>
                     <Icon name='settings' marginRight='.5rem' />
