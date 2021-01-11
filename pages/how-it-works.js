@@ -34,6 +34,13 @@ const HowItWorks = () => (
           plays in the "mass" of a project being donated to. In other words, based on the number of times
           your package is used in the dependency tree and the depth at which it is used, you will receive compenstation.
         </Text>
+        <Text marginBottom='1rem'>
+          If you'd like to increase your revenue, encourage users in your package README to use Flossbank
+          during their development flow. Our CLI allows users of your code to give back to you, for free
+          by seeing ads in their terminal (if desired) during the installation of your package or any package that depends
+          on yours. They can install Flossbank
+          at <TextLink href='https://flossbank.com' external text='https://flossbank.com' />.
+        </Text>
         <Text color='boulder' textAlign='center' fontWeight='500'>
           Have more questions? Visit our{' '}
           <TextLink href='/faq' text='FAQ page' /> to find out more.

@@ -12,6 +12,10 @@ export const getMaintainer = async ({ maintainerId }) => {
   return fetchThenJson(`api/maintainer/get?maintainerId=${maintainerId}`, optionsGetRequest())
 }
 
+export const getPackage = async ({ packageId }) => {
+  return fetchThenJson(`api/package/get?packageId=${packageId}`, optionsGetRequest())
+}
+
 export const logout = async () => {
   return fetchThenJson('api/organization/logout', optionsWithPostBody())
 }

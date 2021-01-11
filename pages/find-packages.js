@@ -5,7 +5,6 @@ import {
   Text,
   Box,
   List,
-  Image,
   ListItem,
   Flex,
   Input
@@ -30,11 +29,11 @@ const FindPackagesPage = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [searchInvoked, setSearchInvoked] = useState(false)
   const [_, setCurrentPackageState] = useLocalStorage(localStoragePackageKey, '') // eslint-disable-line
-  const subheadingExistingPackages = 'Flossbank may not be aware of a package as we may have not encountered it in a dependency tree snapshot yet'
+  const subheadingExistingPackages = 'Flossbank may not be aware of a package as we may have not encountered it in a dependency tree snapshot yet.'
 
   const goToPackage = ({ id }) => {
     setCurrentPackageState(id)
-    router.push(`/packages/${id}`)
+    router.push(`/package/${id}`)
   }
 
   const findPackagesDebounce = debounce(async (name) => {
@@ -85,11 +84,12 @@ const FindPackagesPage = () => {
             text='Enter package name:'
             align='left'
           />
+          <Text marginBottom='1rem'>Currently, Flossbank supports Rubygems and Npm packages.</Text>
           <Text marginBottom='2rem'>
             {subheadingExistingPackages}
           </Text>
           <Flex flexDirection='row' marginBottom='1rem' border='1px solid gray' borderRadius='0.5rem'>
-            <Box borderLeft='1px solid black' width='100%'>
+            <Box width='100%'>
               <Input
                 id='package-name'
                 placeholder='js-deep-equals'
@@ -114,11 +114,9 @@ const FindPackagesPage = () => {
                 borderRadius='5px'
                 width='100%'
               >
-                <Flex flexDirection='row'>
-                  <Image width='5rem' height='5rem' borderRadius='1rem' src={pkg.avatarUrl} />
-                  <Flex marginLeft='1rem' flexDirection='column' justifyContent='center'>
-                    <Text textTransform='uppercase' fontWeight='bold'>{pkg.name}</Text>
-                  </Flex>
+                <Flex flexDirection='row' paddingLeft='1rem'>
+                  <Text textTransform='uppercase' fontWeight='bold'>{`${pkg.registry}: `}</Text>
+                  <Text textTransform='uppercase'>{pkg.name}</Text>
                 </Flex>
               </ListItem>
             ))}
