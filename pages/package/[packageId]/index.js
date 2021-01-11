@@ -51,8 +51,8 @@ const PackagePage = () => {
     try {
       const pkgRes = await getPackage({ packageId: pkgId })
       setPkg(pkgRes.package)
-      setPkgDonationRevenue(pkgRes.package.donationRevenue ? pkgRes.package.donationRevenue / 1000 : 0)
-      setPkgAdRevenue(pkgRes.package.adRevenue ? pkgRes.package.adRevenue / 1000 : 0)
+      setPkgDonationRevenue(pkgRes.package.donationRevenue ? pkgRes.package.donationRevenue / 100000 : 0)
+      setPkgAdRevenue(pkgRes.package.adRevenue ? pkgRes.package.adRevenue / 100000 : 0)
     } catch (e) {
     } finally {
       setPkgDonationRevenueLoading(false)
@@ -75,7 +75,6 @@ const PackagePage = () => {
 
   return (
     <PageWrapper title='Dashboard'>
-      <h1 className='sr-only'>{getPackageName()}</h1>
       <Section
         minHeight='50rem'
         backgroundColor='lightRock'
@@ -129,7 +128,7 @@ const PackagePage = () => {
                       fontSize='2.25rem'
                       color='ocean'
                     >
-                      {pkgAdRevenue.toFixed(2)}
+                      $ {pkgAdRevenue.toFixed(2)}
                     </Text>
                   )}
                   <Flex
@@ -165,7 +164,7 @@ const PackagePage = () => {
                       fontSize='2.25rem'
                       color='ocean'
                     >
-                      {pkgDonationRevenue.toFixed(2)}
+                      $ {pkgDonationRevenue.toFixed(2)}
                     </Text>
                   )}
                   <Flex
