@@ -1,7 +1,23 @@
 import fetch from 'isomorphic-fetch'
 
+export const login = async ({ email }) => {
+  return fetchThenJson('api/user/request-login', optionsWithPostBody({ email }))
+}
+
 export const completeGHLogin = async ({ code, state }) => {
-  return fetchThenJson('api/organization/github-auth', optionsWithPostBody({ code, state }))
+  return fetchThenJson('api/user/github-auth', optionsWithPostBody({ code, state }))
+}
+
+export const completeLogin = async ({ email, token }) => {
+  return fetchThenJson('api/user/complete-login', optionsWithPostBody({ email, token }))
+}
+
+export const signup = async ({ email, referralCode }) => {
+  return fetchThenJson('api/user/register', optionsWithPostBody({ email, referralCode }))
+}
+
+export const verifyRegistration = async ({ email, response, token }) => {
+  return fetchThenJson('api/user/verify-registration', optionsWithPostBody({ email, token, recaptchaResponse: response }))
 }
 
 export const fetchPackagesByName = async ({ name }) => {

@@ -64,10 +64,22 @@ export const useAuth = () => {
 function useProvideAuth () {
   const [user, setUser] = useState(null)
   const [_, setAuthedFlag] = useLocalStorage('flossbank_auth', false) // eslint-disable-line
+  const [userReferrer, __] = useLocalStorage('flossbank_rc', '') // eslint-disable-line
 
   const setSessionUser = (u) => {
     setUser(u || null)
     setAuthedFlag(!!u)
+  }
+
+  const login = async (body) => {
+    const res = await api.login(body)
+    return res
+  }
+
+  const completeLogin = async (body) => {
+    const res = await api.completeLogin(body)
+    setSessionUser(res.success && res.user)
+    return res
   }
 
   const completeGHLogin = async ({ state, code }) => {
@@ -81,13 +93,30 @@ function useProvideAuth () {
     setSessionUser(undefined)
   }
 
+  const signup = async (body) => {
+    if (userReferrer && userReferrer !== '') {
+      body.referralCode = userReferrer
+    }
+    const res = await api.signup(body)
+    return res
+  }
+
   const resume = async () => {
     const res = await api.resume()
     setSessionUser(res.success && res.user)
   }
 
+  const verify = async (opts) => {
+    const res = await api.verifyRegistration(opts)
+    setSessionUser(res.success && res.user)
+  }
+
   return {
     resume,
+    signup,
+    login,
+    verify,
+    completeLogin,
     completeGHLogin,
     user,
     logout

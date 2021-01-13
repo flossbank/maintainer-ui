@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
+import { decode } from 'b36'
 import { Heading, Text } from '@chakra-ui/core'
 
 import { useLocalStorage } from '../utils/useLocalStorage'
@@ -13,28 +14,26 @@ import { useAuth } from '../utils/useAuth'
 const CompleteLoginPage = () => {
   const router = useRouter()
   const auth = useAuth()
-  const [status, setStatus] = useState('Verifying…')
+  const [status, setStatus] = useState('Logging in…')
   const [isLoading, setIsLoading] = useState(false)
   const [subHeader, setSubHeader] = useState('')
   const [loginAttempted, setLoginAttempted] = useState(false)
+  const [flossbankDest, setFlossbankDest] = useLocalStorage('flossbank_dest', '')
   const [ghState, _] = useLocalStorage(localStorageGHStateKey, '') // eslint-disable-line
 
   function showError () {
     setIsLoading(false)
     setStatus('Authentication Failed')
-    setSubHeader('It looks like our GitHub communication was lost in translation.')
-  }
-
-  async function redirectUser () {
-    router.push('/find-organization')
+    setSubHeader(`It looks like you may have clicked on an invalid email verification link. 
+    Please close this window and try authenticating again.`)
   }
 
   async function attemptCompleteLogin () {
     setIsLoading(true)
     try {
-      const { code, state } = router.query
+      const { e: encodedEmail, token, code, state } = router.query
 
-      if (!code || !state) return
+      if ((!encodedEmail || !token) && (!code || !state)) return
 
       if (loginAttempted) {
         showError()
@@ -46,14 +45,23 @@ const CompleteLoginPage = () => {
       // If code and state are passed in, then it as a GH auth redirect
       // Before processing GH redirect, we need to make sure the state we passed in
       // is the state returned
-      if (state === ghState) {
+      if (code && state && (state === ghState)) {
         await auth.completeGHLogin({ code, state })
-        redirectUser()
+      } else if (encodedEmail && token) {
+        const email = decode(encodedEmail || '').toString()
+        await auth.completeLogin({ email, token })
       } else {
         showError()
         return
       }
-      setIsLoading(false)
+
+      setTimeout(() => {
+        // Set cached dest no matter what and redirect to one if it existed
+        const flossbankDestTemp = flossbankDest
+        setFlossbankDest('')
+        if (flossbankDest) router.push(flossbankDestTemp)
+        else router.push('/dashboard')
+      }, 1000)
     } catch (e) {
       showError()
       setIsLoading(false)
@@ -62,7 +70,7 @@ const CompleteLoginPage = () => {
 
   useEffect(() => {
     attemptCompleteLogin()
-  }, [router.query])
+  }, [router.query]) // only run on mount
 
   return (
     <PageWrapper title='Log In'>
