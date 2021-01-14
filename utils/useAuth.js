@@ -1,6 +1,7 @@
 import React, { useState, useContext, createContext } from 'react'
 import { useRouter } from 'next/router'
 import { useLocalStorage } from './useLocalStorage'
+import { authEndpoints } from './constants'
 import * as api from '../client/index'
 
 import { Flex, Text } from '@chakra-ui/core'
@@ -30,8 +31,10 @@ const Loader = () => (
 export function ProvideAuth ({ children }) {
   const router = useRouter()
   const [rcCaptured, setRcCaptured] = useState(false)
+  const [cachedDest, setCachedDest] = useState(false)
   const auth = useProvideAuth()
   const [isUserAuthed, setIsUserAuthed] = useLocalStorage('flossbank_auth', false)
+  const [_, setFlossbankDest] = useLocalStorage('flossbank_dest', '') // eslint-disable-line
   const [__, setUserReferrer] = useLocalStorage('flossbank_rc', '') // eslint-disable-line
 
   if (router.query.rc && !rcCaptured) {
@@ -40,10 +43,22 @@ export function ProvideAuth ({ children }) {
     router.replace(router.route)
   }
 
-  // 1. user has no session in React state
-  // 2. user has auth flag in local storage
-  // Assumption: they have a valid API cookie, but React doesn't know about it (e.g. they refreshed the page)
-  // Result: we will resume their session and update React session state
+  // 1. user is visiting protected endpoint (e.g. Dashboard)
+  // 2. user has no session in React state
+  // 3. user has no auth flag in local storage
+  // Result: they must not have a valid API cookie, so we will require them to login (and show the loader)
+  if (router && authEndpoints.includes(router.pathname) && !auth.user && !isUserAuthed) {
+    // Store the endpoint they attempted to navigate to
+    if (!cachedDest) {
+      setCachedDest(true)
+      setFlossbankDest(router.pathname)
+    }
+    if (typeof window !== 'undefined') {
+      router.push('/login')
+    }
+    return <Loader />
+  }
+
   if (isUserAuthed && !auth.user) {
     auth.resume().catch((_) => {
       setIsUserAuthed(false)

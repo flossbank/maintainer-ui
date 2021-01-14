@@ -147,26 +147,28 @@ const AuthProcess = ({
                   })}
                 />
               </FormControl>
-              <FormControl marginBottom='2.25rem' isRequired>
-                <FormLabel htmlFor='privacy' marginBottom='.5rem' className={styles.label}>
-                    Consent to privacy policy
-                </FormLabel>
-                <Box aria-atomic='true' id='privacy-error'>
-                  {errors.privacy && (
-                    <ErrorMessage msg="Please check the box that to verify that you've read our privacy policy" />
-                  )}
-                </Box>
-                <input
-                  type='checkbox'
-                  id='privacy'
-                  name='privacy'
-                  aria-describedby='privacy-error'
-                  ref={register({
-                    required: true
-                  })}
-                />
-                <Text display='inline' marginLeft='1rem'>I've read the <TextLink href='/privacy' text='privacy policy' /> and consent</Text>
-              </FormControl>
+              {!login && (
+                <FormControl marginBottom='2.25rem' isRequired>
+                  <FormLabel htmlFor='privacy' marginBottom='.5rem' className={styles.label}>
+                      Consent to privacy policy
+                  </FormLabel>
+                  <Box aria-atomic='true' id='privacy-error'>
+                    {errors.privacy && (
+                      <ErrorMessage msg="Please check the box that to verify that you've read our privacy policy" />
+                    )}
+                  </Box>
+                  <input
+                    type='checkbox'
+                    id='privacy'
+                    name='privacy'
+                    aria-describedby='privacy-error'
+                    ref={register({
+                      required: true
+                    })}
+                  />
+                  <Text display='inline' marginLeft='1rem'>I've read the <TextLink href='/privacy' text='privacy policy' /> and consent</Text>
+                </FormControl>
+              )}
               <FBButton
                 isLoading={isSubmitting}
                 loadingText={btnLoadingText}

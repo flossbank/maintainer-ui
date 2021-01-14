@@ -37,9 +37,12 @@ const FindPackagesPage = () => {
   }
 
   const findPackagesDebounce = debounce(async (name) => {
-    setFetchingPackages(true)
-    setPackages([])
     setSearchInvoked(!!name)
+    if (!name) {
+      setPackages([])
+      return
+    }
+    setFetchingPackages(true)
     try {
       const packagesRes = await fetchPackagesByName({ name })
       setPackages(packagesRes.packages || [])
@@ -91,6 +94,7 @@ const FindPackagesPage = () => {
           <Flex flexDirection='row' marginBottom='1rem' border='1px solid gray' borderRadius='0.5rem'>
             <Box width='100%'>
               <Input
+                autoComplete='off'
                 id='package-name'
                 placeholder='js-deep-equals'
                 onChange={findPackages}
