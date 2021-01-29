@@ -16,8 +16,10 @@
   },
   "dependencies": {
     "@chakra-ui/core": "^0.8.0",
+    "@chakra-ui/icons": "^1.0.3",
     "@chakra-ui/react": "^1.1.4",
     "@emotion/core": "^10.0.28",
+    "@emotion/react": "^11.1.4",
     "@emotion/styled": "^10.0.27",
     "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.7.0",

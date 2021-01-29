@@ -1,8 +1,6 @@
 import {
   Box,
   Text,
-  FormControl,
-  FormLabel,
   Select,
   Textarea,
   Alert,
@@ -18,21 +16,8 @@ import TextLink from '../common/textLink'
 import ErrorMessage from '../common/errorMessage'
 
 import { sendSupportFeedback } from '../../client'
-import FBTextInput from '../common/fbTextInput.js'
-
-const FBFormControl = ({ labelText, id, required, children, ...props }) => (
-  <FormControl marginBottom='1.5rem' isRequired={required} {...props}>
-    <FormLabel
-      htmlFor={id}
-      marginBottom='.5rem'
-      fontWeight='400 !important'
-      fontSize='1rem'
-    >
-      {labelText}
-    </FormLabel>
-    {children}
-  </FormControl>
-)
+import FBTextInput from '../common/fbTextInput'
+import FBFormControl from '../common/formControl'
 
 const topics = [
   'Partnerships',

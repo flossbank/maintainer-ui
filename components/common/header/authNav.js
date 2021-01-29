@@ -13,6 +13,7 @@ import {
   MenuList,
   MenuItem
 } from '@chakra-ui/core'
+import { AddIcon } from '@chakra-ui/icons'
 
 import { useLocalStorage } from '../../../utils/useLocalStorage'
 import { localStorageMaintainerKey } from '../../../utils/constants'
@@ -90,9 +91,9 @@ const AuthNav = ({ user, onLogout }) => {
             <MenuItem
               _focus={itemFocusStyles}
               _active={itemActiveStyles}
-              onClick={() => handleNav(`/organization/${currentMaintainerId}`)}
+              onClick={() => handleNav('/dashboard')}
             >
-              <Link href={`/organization/${currentMaintainerId}`}>
+              <Link href='/dashboard'>
                 <a>
                   <Box as='span' display='flex' alignItems='center'>
                     <Icon name='home' marginRight='.5rem' />
@@ -132,13 +133,13 @@ const AuthNav = ({ user, onLogout }) => {
             <MenuItem
               _focus={itemFocusStyles}
               _active={itemActiveStyles}
-              onClick={() => handleNav('/how-it-works')}
+              onClick={() => handleNav('/import-packages')}
             >
-              <Link href='/how-it-works'>
+              <Link href='/import-packages'>
                 <a>
                   <Box as='span' display='flex' alignItems='center'>
-                    <Icon name='info' marginRight='.5rem' />
-                    <span>How it works</span>
+                    <AddIcon marginRight='.5rem' />
+                    <span>Import Packages</span>
                   </Box>
                 </a>
               </Link>
@@ -146,9 +147,9 @@ const AuthNav = ({ user, onLogout }) => {
             <MenuItem
               _focus={itemFocusStyles}
               _active={itemActiveStyles}
-              onClick={() => handleNav(`/organization/${currentMaintainerId}/settings`)}
+              onClick={() => handleNav('/dashboard/settings')}
             >
-              <Link href={`/organization/${currentMaintainerId}/settings`}>
+              <Link href='/dashboard/settings'>
                 <a>
                   <Box as='span' display='flex' alignItems='center'>
                     <Icon name='settings' marginRight='.5rem' />

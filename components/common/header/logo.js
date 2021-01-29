@@ -3,9 +3,6 @@ import Link from 'next/link'
 import FullLogo from './fullLogo'
 import FBLogoLetters from './logoLetters'
 
-import { useLocalStorage } from '../../../utils/useLocalStorage'
-import { localStorageMaintainerKey } from '../../../utils/constants'
-
 /*
 We're doing it this way, using media queries to decide which logo to show, because
 when using `useMedia`, we'd get an initial flash without the full logo on each page load / route change
@@ -13,8 +10,7 @@ Even that short amount of time for the useMedia hook to run was long enough to c
 */
 
 const FBLogo = ({ authed }) => {
-  const [currentMaintainerId, _] = useLocalStorage(localStorageMaintainerKey, '') // eslint-disable-line
-  const href = authed ? `/organization/${currentMaintainerId}` : '/'
+  const href = authed ? '/dashboard' : '/'
 
   return (
     <Link href={href}>

@@ -9,6 +9,7 @@ const Login = () => {
     <PageWrapper title='Log In'>
       <AuthProcess
         process={auth.login}
+        icon='smile'
         login
         headingText='Log in to the Flossbank Maintainer Portal'
         submitText='Log in'
