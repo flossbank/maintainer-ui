@@ -5,12 +5,15 @@ import {
   Alert,
   AlertIcon,
   List,
+  Link,
+  useDisclosure,
   ListItem,
   CircularProgress,
   Flex
 } from '@chakra-ui/core'
 
 import { useLocalStorage } from '../utils/useLocalStorage'
+import { useAuth } from '../utils/useAuth'
 import {
   localStorageDashboardWelcomeBannerKey
 } from '../utils/constants'
@@ -21,6 +24,7 @@ import UnderlinedHeading from '../components/common/underlinedHeading'
 import Banner from '../components/common/banner'
 import PageWrapper from '../components/common/pageWrapper'
 import Section from '../components/common/section'
+import UsernameModal from '../components/dashboard/usernameModal'
 
 const Dashboard = () => {
   const [showWelcomeMessage, setShowWelcomeMessage] = useLocalStorage(
@@ -28,19 +32,24 @@ const Dashboard = () => {
     true
   )
 
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
   const [ownedPkgs, setOwnedPkgs] = useState([])
   const [ownedPkgsLoading, setOwnedPkgsLoading] = useState(true)
+
+  const { user } = useAuth()
 
   async function fetchData () {
     try {
       const res = await getOwnedPackages()
       if (res.success) setOwnedPkgs(res.packages)
-      console.log('here', res)
     } catch (e) {
 
     } finally {
       setOwnedPkgsLoading(false)
     }
+
+    if (!user.username) onOpen()
   }
 
   useEffect(() => {
@@ -62,6 +71,7 @@ const Dashboard = () => {
         backgroundColor='lightRock'
         justifyContent='center'
       >
+        <UsernameModal isOpen={isOpen} onClose={onClose} />
         <UnderlinedHeading
           text='Maintained packages'
           align={{ base: 'center', lg: 'left' }}
@@ -91,7 +101,9 @@ const Dashboard = () => {
           <List marginBottom='2rem'>
             {ownedPkgs.map((pkg) => (
               <ListItem key={pkg.id}>
-                <Flex flexDirection='row'><Text fontWeight='bold'>{pkg.registry}</Text><Text>: {pkg.name}</Text></Flex>
+                <Link href={`/package/${pkg.id}`}>
+                  <Flex flexDirection='row'><Text fontWeight='bold'>{pkg.registry}</Text><Text>: {pkg.name}</Text></Flex>
+                </Link>
               </ListItem>
             ))}
           </List>

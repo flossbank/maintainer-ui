@@ -16,6 +16,10 @@ export const signup = async ({ email, referralCode }) => {
   return fetchThenJson('api/maintainer/register', optionsWithPostBody({ email, referralCode }))
 }
 
+export const updateUsername = async ({ username }) => {
+  return fetchThenJson('api/maintainer/update-username', optionsWithPutBody({ username }))
+}
+
 export const verifyRegistration = async ({ email, response, token }) => {
   return fetchThenJson('api/maintainer/verify-registration', optionsWithPostBody({ email, token, recaptchaResponse: response }))
 }
@@ -60,13 +64,23 @@ const fetchThenJson = (url, options) => fetch(`${window.location.origin}/${url}`
     return res.json()
   })
 
+const headers = {
+  'Content-Type': 'application/json',
+  'x-requested-with': 'XmlHttpRequest'
+}
+
 const optionsWithPostBody = (body) => {
   return {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-requested-with': 'XmlHttpRequest'
-    },
+    headers,
+    body: JSON.stringify(body)
+  }
+}
+
+const optionsWithPutBody = (body) => {
+  return {
+    method: 'PUT',
+    headers,
     body: JSON.stringify(body)
   }
 }
