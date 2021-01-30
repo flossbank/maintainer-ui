@@ -27,6 +27,7 @@
     "b36": "^1.0.0",
     "clone-deep": "^4.0.1",
     "emotion-theming": "^10.0.27",
+    "framer-motion": "^3.2.2-rc.1",
     "got": "^11.5.1",
     "isomorphic-fetch": "^2.2.1",
     "next": "^9.5.5",
