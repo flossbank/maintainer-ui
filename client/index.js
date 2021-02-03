@@ -5,7 +5,7 @@ export const login = async ({ email }) => {
 }
 
 export const completeGHLogin = async ({ code, state }) => {
-  return fetchThenJson('api/user/github-auth', optionsWithPostBody({ code, state }))
+  return fetchThenJson('api/maintainer/github-auth', optionsWithPostBody({ code, state }))
 }
 
 export const completeLogin = async ({ email, token }) => {
@@ -36,8 +36,8 @@ export const fetchPackagesByName = async ({ name }) => {
   return fetchThenJson(`api/package/search-by-name?name=${name}`, optionsGetRequest())
 }
 
-export const getMaintainer = async ({ maintainerId }) => {
-  return fetchThenJson(`api/maintainer/get?maintainerId=${maintainerId}`, optionsGetRequest())
+export const updateIlpPointer = async ({ pointer }) => {
+  return fetchThenJson('api/maintainer/update-ilp-pointer', optionsWithPostBody({ ilpPointer: pointer }))
 }
 
 export const getPackage = async ({ packageId }) => {

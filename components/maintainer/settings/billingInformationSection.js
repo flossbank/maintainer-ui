@@ -4,60 +4,58 @@ import {
   Text,
   Button,
   Box,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
   useDisclosure
 } from '@chakra-ui/core'
 
-import StripeWrapper from '../../common/stripe/stripeWrapper'
-import UpdateBilling from './updateBilling'
+import TextLink from '../../common/textLink'
 import SettingsCard from './settingsCard'
-import UnderlinedHeading from '../../common/underlinedHeading'
+import UpdateIlpModal from '../../common/updateIlpModal'
 
-const BillingInfo = ({ last4CardDigits }) => (
+const BillingInfo = ({ ilpPointer }) => (
   <Box as='dl' display='flex'>
     <Box as='dt' fontWeight='500' marginRight='1rem'>
-      Credit Card Number:
+      ILP Pointer:
     </Box>
     <Box as='dd'>
-      <span aria-hidden='true'>{'•••• '.repeat(3)} </span>
-      {last4CardDigits}
+      {ilpPointer}
     </Box>
   </Box>
 )
 
-const BillingInformationSection = ({ org }) => {
-  const [last4CardDigits, setLast4CardDigits] = useState(
-    org && org.billingInfo.last4
+const BillingInformationSection = ({ user }) => {
+  const [ilpPointer, setIlpPointer] = useState(
+    user && user.payoutInfo.ilpPointer
   )
   const { isOpen, onOpen, onClose } = useDisclosure()
   const finalRef = useRef()
 
-  const handleUpdateBillingInfo = (billingInfo) => {
-    setLast4CardDigits(billingInfo.last4)
+  const handleUpdateIlpPointer = (ilpPointer) => {
+    setIlpPointer(ilpPointer)
+    onClose()
   }
 
   return (
     <>
       <SettingsCard headingText='Billing Information'>
         <Box marginBottom='1.5rem'>
-          {!last4CardDigits && (
+          {!ilpPointer && (
             <>
               <Text marginBottom='1.5rem'>
                 <strong>
-                  You currently have no billing information on file.
+                  You currently have no ILP pointer on file.
                 </strong>
               </Text>
               <Text>
-                Adding billing information will allow you to donate to the Open
-                Source packages you use most.
+                Adding an ILP pointer allows us to automatically send you money each month.
+                <TextLink
+                  text='You can read more about Interledger here'
+                  external
+                  href='https://interledger.org/'
+                />.
               </Text>
             </>
           )}
-          {last4CardDigits && <BillingInfo last4CardDigits={last4CardDigits} />}
+          {ilpPointer && <BillingInfo ilpPointer={ilpPointer} />}
         </Box>
         <Button
           backgroundColor='puddle'
@@ -80,36 +78,13 @@ const BillingInformationSection = ({ org }) => {
           ref={finalRef}
           onClick={onOpen}
         >
-          {last4CardDigits
-            ? 'Update billing information'
-            : 'Add billing information'}
+          {ilpPointer
+            ? 'Update ILP pointer'
+            : 'Add ILP pointer'}
         </Button>
       </SettingsCard>
 
-      <Modal
-        isOpen={isOpen}
-        size='xl'
-        closeOnOverlayClick={false}
-        onClose={onClose}
-      >
-        <ModalOverlay backgroundColor='rgba(0, 0, 0, .75)' />
-        <ModalContent backgroundColor='white' padding='2rem'>
-          <ModalHeader>
-            <UnderlinedHeading
-              text='Updating Billing Information'
-              align='left'
-              marginBottom='0'
-            />
-          </ModalHeader>
-          <ModalCloseButton />
-          <StripeWrapper>
-            <UpdateBilling
-              onClose={onClose}
-              UpdateBilling={handleUpdateBillingInfo}
-            />
-          </StripeWrapper>
-        </ModalContent>
-      </Modal>
+      <UpdateIlpModal isOpen={isOpen} handleUpdateIlpPointer={handleUpdateIlpPointer} onClose={onClose} />
     </>
   )
 }

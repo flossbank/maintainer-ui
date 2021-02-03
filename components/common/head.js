@@ -2,9 +2,9 @@ import Head from 'next/head'
 
 // only put analytics on the page if we are in production and not a Next preview
 const GOAT_COUNTER_ENABLE = !process.env.NEXT_PUBLIC_PREVIEW && process.env.GOAT_COUNTER_ENABLE
-const defaultDescription = 'Flossbank enables companies to support the backbone of their technological systems through a simple monthly contribution.'
-const defaultOGURL = 'https://enterprise.flossbank.com'
-const defaultOGImage = 'https://enterprise.flossbank.com/images/ogImage.png'
+const defaultDescription = 'Flossbank enables companies and individuals to support the backbone of their technological systems through a simple monthly contribution.'
+const defaultOGURL = 'https://maintainer.flossbank.com'
+const defaultOGImage = 'https://maintainer.flossbank.com/images/ogImage.png'
 
 const FBHead = ({ title, url, ogImage, description }) => (
   <Head>

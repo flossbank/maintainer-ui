@@ -97,12 +97,12 @@ const Dashboard = () => {
             </Text>
           </Alert>
         )}
-        {!ownedPkgsLoading && ownedPkgs.length && (
+        {!ownedPkgsLoading && !!ownedPkgs.length && (
           <List marginBottom='2rem'>
             {ownedPkgs.map((pkg) => (
               <ListItem key={pkg.id}>
                 <Link href={`/package/${pkg.id}`}>
-                  <Flex flexDirection='row'><Text fontWeight='bold'>{pkg.registry}</Text><Text>: {pkg.name}</Text></Flex>
+                  <Flex flexDirection='row'><Text fontWeight='bold'>{pkg.registry.toUpperCase()}</Text><Text>: {pkg.name}</Text></Flex>
                 </Link>
               </ListItem>
             ))}
@@ -113,6 +113,27 @@ const Dashboard = () => {
           align={{ base: 'center', lg: 'left' }}
           marginBottom='2rem'
         />
+        <UnderlinedHeading
+          text='Payout method'
+          align={{ base: 'center', lg: 'left' }}
+          marginBottom='2rem'
+        />
+        {!user.billingInfo.payout && (
+          <Alert
+            status='info'
+            backgroundColor='puddle'
+            color='ocean'
+            fontWeight='500'
+            marginBottom='1.5rem'
+          >
+            <AlertIcon color='ocean' />
+            <Text>
+              We currently don't have a payout method for you, please
+              enter in an ILP payment pointer or an Open Collective Link
+              to begin getting paid for your maintained packages immediately.
+            </Text>
+          </Alert>
+        )}
       </Section>
     </PageWrapper>
   )

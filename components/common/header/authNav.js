@@ -147,9 +147,9 @@ const AuthNav = ({ user, onLogout }) => {
             <MenuItem
               _focus={itemFocusStyles}
               _active={itemActiveStyles}
-              onClick={() => handleNav('/dashboard/settings')}
+              onClick={() => handleNav('/maintainer/settings')}
             >
-              <Link href='/dashboard/settings'>
+              <Link href='/maintainer/settings'>
                 <a>
                   <Box as='span' display='flex' alignItems='center'>
                     <Icon name='settings' marginRight='.5rem' />

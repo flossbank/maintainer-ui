@@ -5,5 +5,6 @@ export const localStoragePackageKey = 'flossbank_package'
 export const localStorageMaintainerKey = 'flossbank_maintainer'
 
 export const authEndpoints = [
-  '/dashboard'
+  '/dashboard',
+  '/maintainer/settings'
 ]

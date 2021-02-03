@@ -16,7 +16,7 @@ const GitHubLoginButton = ({ children, login, ...props }) => {
     setGhState(Math.random().toString(36).substring(2, 15))
   }, [])
 
-  const ghLinkWithRedirect = githubLink + '&redirect_uri=https://enterprise.flossbank.com/complete-login'
+  const ghLinkWithRedirect = githubLink + '&redirect_uri=https://maintainer.flossbank.com/complete-login'
   const fullGithubLink = ghLinkWithRedirect + `&state=${ghState}`
 
   return (
