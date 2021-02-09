@@ -1,5 +1,5 @@
 // hides content visually but keeps it in the document and accessible for SEO and screenreaders
-.sr-only {
+:global(.sr-only) {
   border: 0 !important;
   clip: rect(0 0 0 0) !important;
   height: auto !important;
@@ -11,6 +11,6 @@
   white-space: nowrap !important;
 }
 
-.u-box-shadow {
+:global(.u-box-shadow) {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 }

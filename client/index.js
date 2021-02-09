@@ -44,8 +44,12 @@ export const getPackage = async ({ packageId }) => {
   return fetchThenJson(`api/package/get?packageId=${packageId}`, optionsGetRequest())
 }
 
+export const getSupportingPackages = async ({ packageId }) => {
+  return fetchThenJson(`api/package/get-supporting-companies?packageId=${packageId}`, optionsGetRequest)
+}
+
 export const logout = async () => {
-  return fetchThenJson('api/organization/logout', optionsWithPostBody())
+  return fetchThenJson('api/maintainer/logout', optionsWithPostBody())
 }
 
 export const sendSupportFeedback = async ({ email, name, topic, body }) => {

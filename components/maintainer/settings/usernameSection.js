@@ -7,55 +7,50 @@ import {
   useDisclosure
 } from '@chakra-ui/core'
 
-import TextLink from '../../common/textLink'
 import SettingsCard from './settingsCard'
-import UpdateIlpModal from '../../common/updateIlpModal'
+import UpdateUsernameModal from '../../dashboard/usernameModal'
 
-const BillingInfo = ({ ilpPointer }) => (
+const UsernameInfo = ({ username }) => (
   <Box as='dl' display='flex'>
     <Box as='dt' fontWeight='500' marginRight='1rem'>
-      ILP Pointer:
+      Username:
     </Box>
     <Box as='dd'>
-      {ilpPointer}
+      {username}
     </Box>
   </Box>
 )
 
-const BillingInformationSection = ({ user }) => {
-  const [ilpPointer, setIlpPointer] = useState(
-    user && user.payoutInfo && user.payoutInfo.ilpPointer
+const UsernameSection = ({ user }) => {
+  const [username, setUsername] = useState(
+    user && user.username
   )
   const { isOpen, onOpen, onClose } = useDisclosure()
   const finalRef = useRef()
 
-  const handleUpdateIlpPointer = (ilpPointer) => {
-    setIlpPointer(ilpPointer)
+  const handleUpdateUsername = (username) => {
+    setUsername(username)
     onClose()
   }
 
   return (
     <>
-      <SettingsCard headingText='Billing Information'>
+      <SettingsCard headingText='Username'>
         <Box marginBottom='1.5rem'>
-          {!ilpPointer && (
+          {!username && (
             <>
               <Text marginBottom='1.5rem'>
                 <strong>
-                  You currently have no ILP pointer on file.
+                  You currently have no username on file.
                 </strong>
               </Text>
               <Text>
-                Adding an ILP pointer allows us to automatically send you money each month.
-                <TextLink
-                  text='You can read more about Interledger here'
-                  external
-                  href='https://interledger.org/'
-                />.
+                A username allows us to keep your email private, and allows others to identify you when
+                configuring distribution percentages for packages you help maintain.
               </Text>
             </>
           )}
-          {ilpPointer && <BillingInfo ilpPointer={ilpPointer} />}
+          {username && <UsernameInfo username={username} />}
         </Box>
         <Button
           backgroundColor='puddle'
@@ -78,14 +73,14 @@ const BillingInformationSection = ({ user }) => {
           ref={finalRef}
           onClick={onOpen}
         >
-          {ilpPointer
-            ? 'Update ILP pointer'
-            : 'Add ILP pointer'}
+          {username
+            ? 'Update username'
+            : 'Add username'}
         </Button>
       </SettingsCard>
 
-      <UpdateIlpModal isOpen={isOpen} handleUpdateIlpPointer={handleUpdateIlpPointer} onClose={onClose} />
+      <UpdateUsernameModal isOpen={isOpen} handleUpdateUsername={handleUpdateUsername} onClose={onClose} canCloseEasily />
     </>
   )
 }
-export default BillingInformationSection
+export default UsernameSection

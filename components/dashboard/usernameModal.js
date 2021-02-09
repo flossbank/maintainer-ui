@@ -16,7 +16,7 @@ import FBButton from '../common/fbButton'
 import ErrorMessage from '../common/errorMessage'
 import { updateUsername } from '../../client/index'
 
-const UsernameModal = ({ isOpen, onClose }) => {
+const UsernameModal = ({ isOpen, onClose, handleUpdateUsername, canCloseEasily }) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
 
@@ -36,7 +36,10 @@ const UsernameModal = ({ isOpen, onClose }) => {
     setIsSubmitting(true)
     try {
       const res = await updateUsername({ username })
-      if (res.success) onClose()
+      if (res.success) {
+        if (handleUpdateUsername) handleUpdateUsername(username)
+        else onClose()
+      }
     } catch (e) {
       if (e.status === 400) {
         setError('Username must be max length 64 characters and alphanumeric with hyphens')
@@ -49,7 +52,7 @@ const UsernameModal = ({ isOpen, onClose }) => {
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false} closeOnEsc={false}>
+    <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={canCloseEasily} closeOnEsc={canCloseEasily}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Add username</ModalHeader>

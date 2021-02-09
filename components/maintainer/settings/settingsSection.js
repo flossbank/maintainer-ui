@@ -2,6 +2,7 @@ import Section from '../../common/section'
 import UnderlinedHeading from '../../common/underlinedHeading'
 
 import BillingInformationSection from './billingInformationSection'
+import UsernameSection from './usernameSection'
 import { useAuth } from '../../../utils/useAuth'
 
 const MaintainerSettingsSection = () => {
@@ -22,7 +23,8 @@ const MaintainerSettingsSection = () => {
         align='center'
         marginBottom='3rem'
       />
-      <BillingInformationSection maintainer={user} />
+      <BillingInformationSection user={user} />
+      <UsernameSection user={user} />
     </Section>
   )
 }
