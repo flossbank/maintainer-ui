@@ -28,6 +28,10 @@ export const getOwnedPackages = async () => {
   return fetchThenJson('api/maintainer/owned-packages', optionsGetRequest())
 }
 
+export const getPendingPayout = async () => {
+  return fetchThenJson('api/maintainer/get-pending-payout', optionsGetRequest())
+}
+
 export const proveNpmOwnership = async ({ token }) => {
   return fetchThenJson('api/maintainer/prove-npm-ownership', optionsWithPostBody({ token }))
 }

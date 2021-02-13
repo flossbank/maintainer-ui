@@ -17,7 +17,10 @@ import { useAuth } from '../utils/useAuth'
 import {
   localStorageDashboardWelcomeBannerKey
 } from '../utils/constants'
-import { getOwnedPackages } from '../client/index'
+import {
+  getOwnedPackages,
+  getPendingPayout
+} from '../client/index'
 
 import TextLink from '../components/common/textLink'
 import UnderlinedHeading from '../components/common/underlinedHeading'
@@ -38,16 +41,23 @@ const Dashboard = () => {
   const [ownedPkgs, setOwnedPkgs] = useState([])
   const [ownedPkgsLoading, setOwnedPkgsLoading] = useState(true)
 
+  const [pendingPayout, setPendingPayout] = useState('0')
+  const [pendingPayoutLoading, setPendingPayoutLoading] = useState(true)
+
   const { user } = useAuth()
 
   async function fetchData () {
     try {
-      const res = await getOwnedPackages()
-      if (res.success) setOwnedPkgs(res.packages)
+      const ownedPackagesRes = await getOwnedPackages()
+      if (ownedPackagesRes.success) setOwnedPkgs(ownedPackagesRes.packages)
+
+      const payoutRes = await getPendingPayout()
+      if (payoutRes.success) setPendingPayout(`${payoutRes.payout}0`)
     } catch (e) {
 
     } finally {
       setOwnedPkgsLoading(false)
+      setPendingPayoutLoading(false)
     }
 
     if (!user.username) onOpen()
@@ -117,7 +127,12 @@ const Dashboard = () => {
             align={{ base: 'center', lg: 'left' }}
             marginBottom='2rem'
           />
-          <Text>Upcoming payout: $0</Text>
+          {pendingPayoutLoading && (
+            <CircularProgress isIndeterminate color='ocean' />
+          )}
+          {!pendingPayoutLoading && (
+            <Text>Upcoming payout: ${pendingPayout}</Text>
+          )}
         </Card>
         <Card>
           <UnderlinedHeading
