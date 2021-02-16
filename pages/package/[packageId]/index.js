@@ -1,11 +1,6 @@
 import { useState, useEffect } from 'react'
 
 import {
-  getPackage,
-  getSupportingPackages
-} from '../../../client'
-
-import {
   Text,
   Box,
   Link,
@@ -18,15 +13,22 @@ import {
   CircularProgress,
   Icon
 } from '@chakra-ui/core'
+import { useRouter } from 'next/router'
 
 import UnderlinedHeading from '../../../components/common/underlinedHeading'
 import PageWrapper from '../../../components/common/pageWrapper'
 import Section from '../../../components/common/section'
 import DashboardDataCard from '../../../components/dashboard/dashboardDataCard'
-import { useRouter } from 'next/router'
+import TextLink from '../../../components/common/textLink'
+import { useAuth } from '../../../utils/useAuth'
+import {
+  getPackage,
+  getSupportingPackages
+} from '../../../client'
 
 const PackagePage = () => {
   const router = useRouter()
+  const user = useAuth().user
 
   const [pkgDonationRevenueLoading, setPkgDonationRevenueLoading] = useState(true)
   const [pkgDonationRevenue, setPkgDonationRevenue] = useState(0)
@@ -84,6 +86,14 @@ const PackagePage = () => {
     }
   }
 
+  function userInMaintainerList () {
+    try {
+      return pkg.maintainers.find((m) => m.username === user.username)
+    } catch (e) {
+      return false
+    }
+  }
+
   return (
     <PageWrapper title='Dashboard'>
       <Section
@@ -114,15 +124,16 @@ const PackagePage = () => {
         >
           <Box gridRow='1' display={{ base: 'none', lg: 'inline' }} gridColumn='1' padding='2rem 2rem 2rem 0'>
             {pkg.avatarUrl && (<Image height='10rem' width='10rem' borderRadius='1rem' src={pkg.avatarUrl} />)}
-            {!pkg.avatarUrl && (<Image height='10rem' width='10rem' borderRadius='1rem' src={`/images/packageManagers/${pkg.registry}.png`} />)}
+            {!pkg.avatarUrl && !!pkg.registry && (<Image height='10rem' width='10rem' borderRadius='1rem' src={`/images/packageManagers/${pkg.registry}.png`} />)}
           </Box>
           <Flex flexDirection='column' justifyContent='space-around' gridRow='1' gridColumn={{ base: '1 / span 5', lg: '2 / span 4' }}>
             <Box padding={{ base: '3rem 0', lg: '0 3rem 0 0' }}>
-              <Text>
+              <Text marginBottom={user ? '2rem' : '0'}>
                 Check out {pkg.name}'s statistics below as well as the companies who have donated to this package.
                 To increase the revenue that goes to this package, we encourage every developer to install Flossbank at
                 https://flossbank.com so the packages they install are supported at no cost to you and maintenance free.
               </Text>
+              {userInMaintainerList() && <TextLink href={`/package/${pkg.id}/manage`} text={`Manage ${getPackageName()}'s maintainer revenue split.`} />}
             </Box>
           </Flex>
           <Box gridRow='2' gridColumn='1 / span 5' width='100%'>
