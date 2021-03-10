@@ -3,23 +3,23 @@ import { List, ListItem, Icon, Box, Text } from '@chakra-ui/core'
 const cardData = [
   {
     heading: 'No self promotion',
-    icon: 'lock',
+    icon: 'duotoneStar',
     text: 'No self promotion, no writing blog posts. Get compensated directly to your bank account if your code is used. That\'s it'
   },
   {
     heading: 'Easy',
-    icon: 'clock',
+    icon: 'smile',
     text:
       'Prove ownership of packages, choose your payout method, and get paid. As easy as that.'
   },
   {
     heading: 'Sustainable',
-    icon: 'duotoneStar',
+    icon: 'stack',
     text: 'Each night, we\'ll use your registry username to ensure we are compensating you for every package you publish. Sign up once, never log in again.'
   },
   {
     heading: 'Equitable',
-    icon: 'equitable',
+    icon: 'givingHand',
     text: 'If maintaining your packages is a team effort, manage distribution of package revenue through the Flossbank maintainer portal.'
   }
 ]
