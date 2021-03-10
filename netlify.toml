@@ -1,0 +1,5 @@
+[context.production]
+  environment = { NODE_ENV = "production", NEXT_PUBLIC_PREVIEW = false }
+
+[context.deploy-preview]
+  environment = { NEXT_PUBLIC_PREVIEW = true }
