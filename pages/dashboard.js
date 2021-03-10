@@ -47,6 +47,8 @@ const Dashboard = () => {
   const { user } = useAuth()
 
   async function fetchData () {
+    if (!user.username) onOpen()
+
     try {
       const ownedPackagesRes = await getOwnedPackages()
       if (ownedPackagesRes.success) setOwnedPkgs(ownedPackagesRes.packages)
@@ -59,8 +61,6 @@ const Dashboard = () => {
       setOwnedPkgsLoading(false)
       setPendingPayoutLoading(false)
     }
-
-    if (!user.username) onOpen()
   }
 
   useEffect(() => {
@@ -74,7 +74,8 @@ const Dashboard = () => {
           <Text color='rock'>
             Thanks for using Flossbank! To maximize the revenue you make through
             Flossbank, we encourage maintainers to encourage their users via their package
-            README's to install Flossbank and use it within their daily flow.
+            README's to install Flossbank and use it within their daily flow. Read more on
+            <TextLink href='/brand-guidelines' text='our brand guidelines page' />
           </Text>
         </Banner>
       )}
