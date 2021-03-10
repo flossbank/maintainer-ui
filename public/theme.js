@@ -21,8 +21,6 @@ export default {
     heading: fontStack,
     mono: 'Menlo, monospace'
   },
-  initialColorMode: 'light',
-  useSystemColorMode: false,
   colors: {
     ...theme.colors,
     ocean: '#2b67af',

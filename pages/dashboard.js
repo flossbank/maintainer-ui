@@ -52,7 +52,7 @@ const Dashboard = () => {
       if (ownedPackagesRes.success) setOwnedPkgs(ownedPackagesRes.packages)
 
       const payoutRes = await getPendingPayout()
-      if (payoutRes.success) setPendingPayout(`${payoutRes.payout}0`)
+      if (payoutRes.success) setPendingPayout(`${payoutRes.payout}`)
     } catch (e) {
 
     } finally {
