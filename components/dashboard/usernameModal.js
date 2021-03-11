@@ -43,6 +43,8 @@ const UsernameModal = ({ isOpen, onClose, handleUpdateUsername, canCloseEasily }
     } catch (e) {
       if (e.status === 400) {
         setError('Username must be max length 64 characters and alphanumeric with hyphens')
+      } else if (e.status === 409) {
+        setError('That username is already taken, please try another')
       } else {
         setError('Something went wrong, please try again')
       }
