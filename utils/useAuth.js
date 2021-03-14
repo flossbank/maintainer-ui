@@ -12,6 +12,7 @@ const authContext = createContext()
 
 const Loader = () => (
   <Flex
+    as='section'
     height='100vh'
     bg='rgba(255, 255, 255, .15)'
     color='boulder'
