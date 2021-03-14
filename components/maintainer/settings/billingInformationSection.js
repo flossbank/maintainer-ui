@@ -48,9 +48,8 @@ const BillingInformationSection = ({ user }) => {
               <Text>
                 Adding an ILP pointer allows us to automatically send you money each month.
                 <TextLink
-                  text='You can read more about Interledger here'
-                  external
-                  href='https://interledger.org/'
+                  text='Click here to learn how to receive an ILP pointer'
+                  href='/wallet-overview'
                 />.
               </Text>
             </>
