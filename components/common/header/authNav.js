@@ -15,12 +15,8 @@ import {
 } from '@chakra-ui/core'
 import { AddIcon } from '@chakra-ui/icons'
 
-import { useLocalStorage } from '../../../utils/useLocalStorage'
-import { localStorageMaintainerKey } from '../../../utils/constants'
-
 const AuthNav = ({ user, onLogout }) => {
   const router = useRouter()
-  const [currentMaintainerId, _] = useLocalStorage(localStorageMaintainerKey, '') // eslint-disable-line
 
   const [isExpanded, setIsExpanded] = useState(false)
   const { colors } = useTheme()
