@@ -1,4 +1,0 @@
-[context.production]
-  environment = { NEXT_PUBLIC_PREVIEW = "false" }
-[context.deploy-preview]
-  environment = { NEXT_PUBLIC_PREVIEW = "true" }
