@@ -3,7 +3,8 @@ import { useState } from 'react'
 import {
   Alert,
   AlertIcon,
-  Box
+  Box,
+  useToast
 } from '@chakra-ui/core'
 import { useForm } from 'react-hook-form'
 
@@ -24,29 +25,55 @@ import Card from '../components/common/card'
 const ImportPackages = () => {
   const [isNpmSubmitting, setIsNpmSubmitting] = useState(false)
   const [isRubygemsSubmitting, setIsRubygemsSubmitting] = useState(false)
-  const [error, setError] = useState('')
+  const [npmError, setNpmError] = useState('')
+  const [rubygemsError, setRubygemsError] = useState('')
+  const toast = useToast()
 
-  const { register, handleSubmit } = useForm()
+  const { register: registerNpm, handleSubmit: handleSubmitNpm } = useForm()
+  const { register: registerRubygems, handleSubmit: handleSubmitRubygems } = useForm()
 
-  async function fetchOwnedPackages (values, e) {
-    setError('')
+  async function fetchNpmOwnedPackages (values, e) {
+    setNpmError('')
     e.preventDefault()
 
-    const { npmToken, rubygemsToken, rubygemsUsername } = values
+    const { npmToken } = values
 
     try {
-      if (npmToken) {
-        setIsNpmSubmitting(true)
-        await proveNpmOwnership({ token: npmToken })
-      }
-      if (rubygemsToken) {
-        setIsRubygemsSubmitting(true)
-        await proveRubygemsOwnership({ token: rubygemsToken, username: rubygemsUsername })
-      }
+      setIsNpmSubmitting(true)
+      await proveNpmOwnership({ token: npmToken })
+      toast({
+        title: 'Success',
+        description: 'NPM packages imported.',
+        status: 'success',
+        duration: 4000,
+        isClosable: true
+      })
     } catch (e) {
-      setError('There was an issue validating your tokens, please try again')
+      setNpmError('There was an issue validating your tokens, please try again')
     } finally {
       setIsNpmSubmitting(false)
+    }
+  }
+
+  async function fetchRubygemsOwnedPackages (values, e) {
+    setRubygemsError('')
+    e.preventDefault()
+
+    const { rubygemsToken, rubygemsUsername } = values
+
+    try {
+      setIsRubygemsSubmitting(true)
+      await proveRubygemsOwnership({ token: rubygemsToken, username: rubygemsUsername })
+      toast({
+        title: 'Success',
+        description: 'Rubygems packages imported.',
+        status: 'success',
+        duration: 4000,
+        isClosable: true
+      })
+    } catch (e) {
+      setRubygemsError('There was an issue validating your tokens, please try again')
+    } finally {
       setIsRubygemsSubmitting(false)
     }
   }
@@ -70,10 +97,10 @@ const ImportPackages = () => {
         <Card shadowSz='lg' w='100%' maxW='60rem' margin='auto'>
           <Box
             as='form'
-            onSubmit={handleSubmit(fetchOwnedPackages)}
+            onSubmit={handleSubmitNpm(fetchNpmOwnedPackages)}
           >
-            {error && (
-              <ErrorMessage msg={error} />
+            {npmError && (
+              <ErrorMessage msg={npmError} />
             )}
             <UnderlinedHeading>NPM</UnderlinedHeading>
             <Alert
@@ -93,7 +120,7 @@ const ImportPackages = () => {
                 id='npm-token'
                 type='text'
                 name='npmToken'
-                register={register({ required: true })}
+                register={registerNpm({ required: true })}
                 aria-describedby='npm-token-error'
               />
             </FBFormControl>
@@ -111,8 +138,11 @@ const ImportPackages = () => {
           </Box>
           <Box
             as='form'
-            onSubmit={handleSubmit(fetchOwnedPackages)}
+            onSubmit={handleSubmitRubygems(fetchRubygemsOwnedPackages)}
           >
+            {rubygemsError && (
+              <ErrorMessage msg={rubygemsError} />
+            )}
             <UnderlinedHeading>RubyGems</UnderlinedHeading>
             <Alert
               status='info'
@@ -130,7 +160,7 @@ const ImportPackages = () => {
                 id='rubygems-token'
                 type='text'
                 name='rubygemsToken'
-                register={register({ required: true })}
+                register={registerRubygems({ required: true })}
                 aria-describedby='rubygems-token-error'
               />
             </FBFormControl>
@@ -139,7 +169,7 @@ const ImportPackages = () => {
                 id='rubygems-username'
                 type='text'
                 name='rubygemsUsername'
-                register={register({ required: true })}
+                register={registerRubygems({ required: true })}
                 aria-describedby='rubygems-username-error'
               />
             </FBFormControl>
