@@ -79,8 +79,8 @@ const Dashboard = () => {
           <Text color='rock'>
             Thanks for using Flossbank! To maximize the revenue you make through
             Flossbank, we encourage maintainers to encourage their users via their package
-            README's to install Flossbank and use it within their daily flow. Read more on
-            <TextLink href='/brand-guidelines' text='our brand guidelines page' />
+            README's to install Flossbank and use it within their daily flow. Read more
+            on <TextLink href='/brand-guidelines' text='our brand guidelines page' />
           </Text>
         </Banner>
       )}
