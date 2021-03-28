@@ -10,7 +10,7 @@ export default function Flossbank ({ Component, pageProps }) {
   return (
     <ThemeProvider theme={CustomTheme}>
       <CSSReset />
-      <ColorModeProvider>
+      <ColorModeProvider value='light'>
         <ProvideAuth>
           <Component {...pageProps} />
         </ProvideAuth>

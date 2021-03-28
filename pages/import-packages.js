@@ -3,11 +3,15 @@ import { useState } from 'react'
 import {
   Alert,
   AlertIcon,
-  Box
+  Box,
+  useToast
 } from '@chakra-ui/core'
 import { useForm } from 'react-hook-form'
 
-import { proveNpmOwnership } from '../client/index'
+import {
+  proveNpmOwnership,
+  proveRubygemsOwnership
+} from '../client/index'
 
 import UnderlinedHeading from '../components/common/underlinedHeading'
 import PageWrapper from '../components/common/pageWrapper'
@@ -19,25 +23,58 @@ import ErrorMessage from '../components/common/errorMessage'
 import Card from '../components/common/card'
 
 const ImportPackages = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState('')
+  const [isNpmSubmitting, setIsNpmSubmitting] = useState(false)
+  const [isRubygemsSubmitting, setIsRubygemsSubmitting] = useState(false)
+  const [npmError, setNpmError] = useState('')
+  const [rubygemsError, setRubygemsError] = useState('')
+  const toast = useToast()
 
-  const { register, handleSubmit } = useForm()
+  const { register: registerNpm, handleSubmit: handleSubmitNpm } = useForm()
+  const { register: registerRubygems, handleSubmit: handleSubmitRubygems } = useForm()
 
-  async function fetchOwnedPackages (values, e) {
-    setError('')
+  async function fetchNpmOwnedPackages (values, e) {
+    setNpmError('')
     e.preventDefault()
-    setIsSubmitting(true)
 
     const { npmToken } = values
 
     try {
-      const res = await proveNpmOwnership({ token: npmToken })
-      console.log('here', res)
+      setIsNpmSubmitting(true)
+      await proveNpmOwnership({ token: npmToken })
+      toast({
+        title: 'Success',
+        description: 'NPM packages imported.',
+        status: 'success',
+        duration: 4000,
+        isClosable: true
+      })
     } catch (e) {
-      setError('There was an issue validating your npm token, please try again')
+      setNpmError('There was an issue validating your tokens, please try again')
     } finally {
-      setIsSubmitting(false)
+      setIsNpmSubmitting(false)
+    }
+  }
+
+  async function fetchRubygemsOwnedPackages (values, e) {
+    setRubygemsError('')
+    e.preventDefault()
+
+    const { rubygemsToken, rubygemsUsername } = values
+
+    try {
+      setIsRubygemsSubmitting(true)
+      await proveRubygemsOwnership({ token: rubygemsToken, username: rubygemsUsername })
+      toast({
+        title: 'Success',
+        description: 'Rubygems packages imported.',
+        status: 'success',
+        duration: 4000,
+        isClosable: true
+      })
+    } catch (e) {
+      setRubygemsError('There was an issue validating your tokens, please try again')
+    } finally {
+      setIsRubygemsSubmitting(false)
     }
   }
 
@@ -49,7 +86,7 @@ const ImportPackages = () => {
         alignItems='center'
         padding={{ base: '3rem 1.5rem', lg: '6rem 7.5rem' }}
         backgroundColor='white'
-        height='90vh'
+        minHeight='90vh'
         justifyContent='center'
       >
         <UnderlinedHeading
@@ -58,42 +95,93 @@ const ImportPackages = () => {
           marginBottom='2rem'
         />
         <Card shadowSz='lg' w='100%' maxW='60rem' margin='auto'>
-          <Alert
-            status='info'
-            backgroundColor='puddle'
-            color='ocean'
-            fontWeight='500'
-            marginBottom='1.5rem'
-          >
-            <AlertIcon color='ocean' />
-            Paste in an NPM READ ONLY token (we do not store this token) to allow us to get a list of allow
-            owned packages.
-          </Alert>
           <Box
             as='form'
-            onSubmit={handleSubmit(fetchOwnedPackages)}
+            onSubmit={handleSubmitNpm(fetchNpmOwnedPackages)}
           >
-            {error && (
-              <ErrorMessage msg={error} />
+            {npmError && (
+              <ErrorMessage msg={npmError} />
             )}
-            <FBFormControl labelText='NPM Token' id='npm-token' required>
+            <UnderlinedHeading>NPM</UnderlinedHeading>
+            <Alert
+              status='info'
+              backgroundColor='puddle'
+              color='ocean'
+              fontWeight='500'
+              marginBottom='1.5rem'
+            >
+              <AlertIcon color='ocean' />
+              Paste in a NPM READ-ONLY token
+              to allow us to get a list of your owned packages.
+              <br />** We do not store this token
+            </Alert>
+            <FBFormControl labelText='NPM Readonly Token' id='npm-token'>
               <FBTextInput
                 id='npm-token'
                 type='text'
                 name='npmToken'
-                register={register({ required: true })}
+                register={registerNpm({ required: true })}
                 aria-describedby='npm-token-error'
               />
             </FBFormControl>
             <Box marginTop='2rem'>
               <FBButton
-                isLoading={isSubmitting}
+                isLoading={isNpmSubmitting}
                 loadingText='Importing...'
                 type='submit'
                 className='u-box-shadow'
                 margin='0 0 1.5rem'
               >
-                Import
+                Import NPM Packages
+              </FBButton>
+            </Box>
+          </Box>
+          <Box
+            as='form'
+            onSubmit={handleSubmitRubygems(fetchRubygemsOwnedPackages)}
+          >
+            {rubygemsError && (
+              <ErrorMessage msg={rubygemsError} />
+            )}
+            <UnderlinedHeading>RubyGems</UnderlinedHeading>
+            <Alert
+              status='info'
+              backgroundColor='puddle'
+              color='ocean'
+              fontWeight='500'
+              marginBottom='1.5rem'
+            >
+              <AlertIcon color='ocean' />
+              Paste in an "Index Rubygems" scoped RubyGems API Key to allow us to get a list of your owned packages.
+              <br />** We do not store this token
+            </Alert>
+            <FBFormControl labelText='RubyGems "Index rubygems" API Key' id='rubygems-token'>
+              <FBTextInput
+                id='rubygems-token'
+                type='text'
+                name='rubygemsToken'
+                register={registerRubygems({ required: true })}
+                aria-describedby='rubygems-token-error'
+              />
+            </FBFormControl>
+            <FBFormControl labelText='RubyGems Username' id='rubygems-username'>
+              <FBTextInput
+                id='rubygems-username'
+                type='text'
+                name='rubygemsUsername'
+                register={registerRubygems({ required: true })}
+                aria-describedby='rubygems-username-error'
+              />
+            </FBFormControl>
+            <Box marginTop='2rem'>
+              <FBButton
+                isLoading={isRubygemsSubmitting}
+                loadingText='Importing...'
+                type='submit'
+                className='u-box-shadow'
+                margin='0 0 1.5rem'
+              >
+                Import RubyGems Packages
               </FBButton>
             </Box>
           </Box>

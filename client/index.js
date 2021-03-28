@@ -28,12 +28,20 @@ export const getOwnedPackages = async () => {
   return fetchThenJson('api/maintainer/owned-packages', optionsGetRequest())
 }
 
+export const updatePackagePercentages = async ({ packageId, maintainers }) => {
+  return fetchThenJson('api/package/update', optionsWithPostBody({ packageId, maintainers }))
+}
+
 export const getPendingPayout = async () => {
   return fetchThenJson('api/maintainer/get-pending-payout', optionsGetRequest())
 }
 
 export const proveNpmOwnership = async ({ token }) => {
   return fetchThenJson('api/maintainer/prove-npm-ownership', optionsWithPostBody({ token }))
+}
+
+export const proveRubygemsOwnership = async ({ token, username }) => {
+  return fetchThenJson('api/maintainer/prove-rubygems-ownership', optionsWithPostBody({ token, username }))
 }
 
 export const fetchPackagesByName = async ({ name }) => {

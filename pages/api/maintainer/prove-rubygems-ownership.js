@@ -1,14 +1,14 @@
 import got from '../../../client/fetch'
 
 export default async (req, reply) => {
-  const { token: readOnlyToken } = req.body
+  const { token: readOnlyToken, username } = req.body
   try {
     const reqHeaders = {
       'x-requested-with': req.headers['x-requested-with'],
       cookie: req.headers.cookie
     }
-    const response = await got.post('package/npm/ownership', {
-      json: { readOnlyToken },
+    const response = await got.post('package/rubygems/ownership', {
+      json: { readOnlyToken, username },
       headers: reqHeaders
     })
     const headers = response.headers
@@ -17,7 +17,7 @@ export default async (req, reply) => {
     }
     reply.status(response.statusCode).json(response.body)
   } catch (e) {
-    console.error({ token: readOnlyToken, message: e.response.body, statusCode: e.response.statusCode })
+    console.error({ token: readOnlyToken, username, message: e.response.body, statusCode: e.response.statusCode })
     reply.status(e.response.statusCode || 500).send(e.response.body)
   }
 }

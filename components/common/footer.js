@@ -30,6 +30,14 @@ const loggedOutLinks = [
   {
     url: '/signup',
     text: 'Sign Up'
+  },
+  {
+    url: '/brand-guidelines',
+    text: 'Brand Guidelines'
+  },
+  {
+    url: '/wallet-overview',
+    text: 'Wallet Overview'
   }
 ]
 
@@ -49,6 +57,14 @@ const loggedInLinks = [
   {
     url: '/contact',
     text: 'Contact Us'
+  },
+  {
+    url: '/brand-guidelines',
+    text: 'Brand Guidelines'
+  },
+  {
+    url: '/wallet-overview',
+    text: 'Wallet Overview'
   }
 ]
 

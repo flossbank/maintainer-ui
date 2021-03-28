@@ -11,6 +11,7 @@ import {
   CircularProgress,
   Flex
 } from '@chakra-ui/core'
+import { AddIcon } from '@chakra-ui/icons'
 
 import { useLocalStorage } from '../utils/useLocalStorage'
 import { useAuth } from '../utils/useAuth'
@@ -29,12 +30,16 @@ import PageWrapper from '../components/common/pageWrapper'
 import Section from '../components/common/section'
 import UsernameModal from '../components/dashboard/usernameModal'
 import Card from '../components/common/card'
+import FBButton from '../components/common/fbButton'
+import { useRouter } from 'next/router'
 
 const Dashboard = () => {
   const [showWelcomeMessage, setShowWelcomeMessage] = useLocalStorage(
     localStorageDashboardWelcomeBannerKey,
     true
   )
+
+  const router = useRouter()
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -47,20 +52,20 @@ const Dashboard = () => {
   const { user } = useAuth()
 
   async function fetchData () {
+    if (!user.username) onOpen()
+
     try {
       const ownedPackagesRes = await getOwnedPackages()
       if (ownedPackagesRes.success) setOwnedPkgs(ownedPackagesRes.packages)
 
       const payoutRes = await getPendingPayout()
-      if (payoutRes.success) setPendingPayout(`${payoutRes.payout}0`)
+      if (payoutRes.success) setPendingPayout(`${payoutRes.payout}`)
     } catch (e) {
 
     } finally {
       setOwnedPkgsLoading(false)
       setPendingPayoutLoading(false)
     }
-
-    if (!user.username) onOpen()
   }
 
   useEffect(() => {
@@ -74,7 +79,8 @@ const Dashboard = () => {
           <Text color='rock'>
             Thanks for using Flossbank! To maximize the revenue you make through
             Flossbank, we encourage maintainers to encourage their users via their package
-            README's to install Flossbank and use it within their daily flow.
+            README's to install Flossbank and use it within their daily flow. Read more
+            on <TextLink href='/brand-guidelines' text='our brand guidelines page' />
           </Text>
         </Banner>
       )}
@@ -84,11 +90,21 @@ const Dashboard = () => {
       >
         <UsernameModal isOpen={isOpen} onClose={onClose} canCloseEasily={false} />
         <Card marginBottom='1rem'>
-          <UnderlinedHeading
-            text='Maintained packages'
-            align={{ base: 'center', lg: 'left' }}
-            marginBottom='2rem'
-          />
+          <Flex
+            flexDirection='row'
+            width='100%'
+            justifyContent='space-between'
+          >
+            <UnderlinedHeading
+              text='Maintained packages'
+              align={{ base: 'center', lg: 'left' }}
+              marginBottom='2rem'
+            />
+            <FBButton height='3rem' float='right' onClick={() => router.push('/import-packages')}>
+              Import Packages
+              <AddIcon marginLeft='.5rem' />
+            </FBButton>
+          </Flex>
           {ownedPkgsLoading && (
             <CircularProgress isIndeterminate color='ocean' />
           )}
@@ -151,9 +167,8 @@ const Dashboard = () => {
               <AlertIcon color='ocean' />
               <Text>
                 We currently don't have a payout method for
-                you, <TextLink text='please enter in an ILP payment pointer' href='/maintainer/settings' /> or
-                an Open Collective Link
-                to begin getting paid for your maintained packages immediately.
+                you, <TextLink text='please enter in an ILP payment pointer' href='/maintainer/settings' /> to
+                begin getting paid for your maintained packages immediately.
               </Text>
             </Alert>
           )}
