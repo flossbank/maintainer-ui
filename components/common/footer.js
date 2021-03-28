@@ -6,23 +6,7 @@ import { Flex, List, ListItem, Text, Box } from '@chakra-ui/core'
 import TextLink from './textLink'
 import styles from './footer.module.scss'
 
-const loggedOutLinks = [
-  {
-    url: '/about',
-    text: 'About Us'
-  },
-  {
-    url: '/faq',
-    text: 'FAQs'
-  },
-  {
-    url: '/how-it-works',
-    text: 'How It Works'
-  },
-  {
-    url: '/contact',
-    text: 'Contact Us'
-  },
+const loggedOutTopLinks = [
   {
     url: '/login',
     text: 'Log In'
@@ -41,7 +25,7 @@ const loggedOutLinks = [
   }
 ]
 
-const loggedInLinks = [
+const loggedOutBottomLinks = [
   {
     url: '/about',
     text: 'About Us'
@@ -57,6 +41,13 @@ const loggedInLinks = [
   {
     url: '/contact',
     text: 'Contact Us'
+  }
+]
+
+const loggedInTopLinks = [
+  {
+    url: '/contact',
+    text: 'Contact Us'
   },
   {
     url: '/brand-guidelines',
@@ -68,10 +59,26 @@ const loggedInLinks = [
   }
 ]
 
+const loggedInBottomLinks = [
+  {
+    url: '/about',
+    text: 'About Us'
+  },
+  {
+    url: '/faq',
+    text: 'FAQs'
+  },
+  {
+    url: '/how-it-works',
+    text: 'How It Works'
+  }
+]
+
 const Footer = () => {
   const currentYear = new Date().getFullYear()
   const user = useAuth().user
-  const links = user ? loggedInLinks : loggedOutLinks
+  const topLinks = user ? loggedInTopLinks : loggedOutTopLinks
+  const bottomLinks = user ? loggedInBottomLinks : loggedOutBottomLinks
 
   return (
     <Box
@@ -82,9 +89,18 @@ const Footer = () => {
       padding={{ base: '3rem 1.5rem', md: '5rem 3.75rem' }}
       color='white'
     >
+      <Flex flexDirection='row' justify='space-around' marginBottom='1rem'>
+        <List className={styles.list}>
+          {topLinks.map((link, i) => (
+            <ListItem key={i}>
+              <TextLink href={link.url} text={link.text} color='white' padding='.25rem' />
+            </ListItem>
+          ))}
+        </List>
+      </Flex>
       <Flex flexDirection='row' justify='space-around' marginBottom='1.5rem'>
         <List className={styles.list}>
-          {links.map((link, i) => (
+          {bottomLinks.map((link, i) => (
             <ListItem key={i}>
               <TextLink href={link.url} text={link.text} color='white' padding='.25rem' />
             </ListItem>
