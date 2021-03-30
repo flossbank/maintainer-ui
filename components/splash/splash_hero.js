@@ -16,7 +16,7 @@ const SplashHero = () => (
     <Flex flexDirection='column' width={['100%', '30rem']} paddingTop={['0', '8rem']}>
       <UnderlinedHeading text='Maintainer Portal' />
       <Subheading>
-        Receive compensation for your value
+        The most efficient way to receive compensation for your OSS
       </Subheading>
       <Text
         id='hero_header'
@@ -25,7 +25,8 @@ const SplashHero = () => (
         textAlign='left'
         marginBottom={{ base: '1.5rem', md: '.5rem' }}
       >
-        Get paid based on the impact your Open Source code has on the world in three clicks.
+        No ads, no gimics, no agreements. Get paid based on the impact
+        your Open Source code has on the world in three clicks.
       </Text>
       <LinkBtn
         href='/signup'
