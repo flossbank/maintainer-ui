@@ -74,6 +74,7 @@ const UsernameModal = ({ isOpen, onClose, handleUpdateUsername, canCloseEasily }
                 id='username'
                 type='text'
                 name='username'
+                onChange={() => setError('')}
                 register={register({ required: true })}
                 aria-describedby='username-error'
               />

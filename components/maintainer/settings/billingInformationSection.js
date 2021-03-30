@@ -46,11 +46,8 @@ const BillingInformationSection = ({ user }) => {
                 </strong>
               </Text>
               <Text>
-                Adding an ILP pointer allows us to automatically send you money each month.
-                <TextLink
-                  text='Click here to learn how to receive an ILP pointer'
-                  href='/wallet-overview'
-                />.
+                Adding an ILP pointer allows us to automatically send you money each
+                month. <TextLink text='Click here to learn how to receive an ILP pointer' href='/wallet-overview' />.
               </Text>
             </>
           )}
