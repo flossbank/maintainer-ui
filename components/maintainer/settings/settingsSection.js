@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+
 import Section from '../../common/section'
 import UnderlinedHeading from '../../common/underlinedHeading'
 
@@ -6,7 +9,18 @@ import UsernameSection from './usernameSection'
 import { useAuth } from '../../../utils/useAuth'
 
 const MaintainerSettingsSection = () => {
-  const user = useAuth().user
+  const router = useRouter()
+  const auth = useAuth()
+  const [user, setUser] = useState(auth.user)
+
+  async function resumeUser () {
+    await auth.resume()
+    setUser(auth.user)
+  }
+
+  useEffect(() => {
+    resumeUser()
+  }, [router.query])
 
   return (
     <Section
@@ -23,8 +37,8 @@ const MaintainerSettingsSection = () => {
         align='center'
         marginBottom='3rem'
       />
-      <BillingInformationSection user={user} />
-      <UsernameSection user={user} />
+      {user && <BillingInformationSection user={user} />}
+      {user && <UsernameSection user={user} />}
     </Section>
   )
 }

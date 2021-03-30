@@ -1,11 +1,7 @@
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import {
-  Flex, Text
-} from '@chakra-ui/core'
-import { ArrowBackIcon } from '@chakra-ui/icons'
-import Link from 'next/link'
 
+import BackButton from '../../../components/common/backButton'
 import PageWrapper from '../../../components/common/pageWrapper'
 import Section from '../../../components/common/section'
 import UnderlinedHeading from '../../../components/common/underlinedHeading'
@@ -53,12 +49,7 @@ const Manage = () => {
         padding={{ base: '3rem 1.5rem', lg: '4rem 7.5rem' }}
         backgroundColor='lightRock'
       >
-        <Link href={`/package/${pkg.id}`}>
-          <Flex flexDirection='row' position='absolute' top='10rem' left='5rem' padding='1rem' cursor='pointer'>
-            <ArrowBackIcon w={6} h={6} />
-            <Text paddingLeft='1rem'>Back</Text>
-          </Flex>
-        </Link>
+        <BackButton />
         <UnderlinedHeading
           as='h1'
           text='Manage maintainer revenue split'

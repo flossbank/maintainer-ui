@@ -59,7 +59,7 @@ const Dashboard = () => {
       if (ownedPackagesRes.success) setOwnedPkgs(ownedPackagesRes.packages)
 
       const payoutRes = await getPendingPayout()
-      if (payoutRes.success) setPendingPayout(`${payoutRes.payout}`)
+      if (payoutRes.success) setPendingPayout(`${payoutRes.payout.toFixed(2)}`)
     } catch (e) {
 
     } finally {
@@ -90,6 +90,42 @@ const Dashboard = () => {
       >
         <UsernameModal isOpen={isOpen} onClose={onClose} canCloseEasily={false} />
         <Card marginBottom='1rem'>
+          <UnderlinedHeading
+            text='Wallet'
+            align={{ base: 'center', lg: 'left' }}
+            marginBottom='2rem'
+          />
+          {pendingPayoutLoading && (
+            <CircularProgress isIndeterminate color='ocean' />
+          )}
+          {!pendingPayoutLoading && (
+            <Text>Upcoming payout: ${pendingPayout}</Text>
+          )}
+        </Card>
+        <Card marginBottom='1rem'>
+          <UnderlinedHeading
+            text='Payout method'
+            align={{ base: 'center', lg: 'left' }}
+            marginBottom='2rem'
+          />
+          {!user.billingInfo.payout && (
+            <Alert
+              status='info'
+              backgroundColor='puddle'
+              color='ocean'
+              fontWeight='500'
+              marginBottom='1.5rem'
+            >
+              <AlertIcon color='ocean' />
+              <Text>
+                We currently don't have a payout method for
+                you, <TextLink text='please enter in an ILP payment pointer' href='/maintainer/settings' /> to
+                begin getting paid for your maintained packages immediately.
+              </Text>
+            </Alert>
+          )}
+        </Card>
+        <Card>
           <Flex
             flexDirection='row'
             width='100%'
@@ -135,42 +171,6 @@ const Dashboard = () => {
                 </ListItem>
               ))}
             </List>
-          )}
-        </Card>
-        <Card marginBottom='1rem'>
-          <UnderlinedHeading
-            text='Wallet'
-            align={{ base: 'center', lg: 'left' }}
-            marginBottom='2rem'
-          />
-          {pendingPayoutLoading && (
-            <CircularProgress isIndeterminate color='ocean' />
-          )}
-          {!pendingPayoutLoading && (
-            <Text>Upcoming payout: ${pendingPayout}</Text>
-          )}
-        </Card>
-        <Card>
-          <UnderlinedHeading
-            text='Payout method'
-            align={{ base: 'center', lg: 'left' }}
-            marginBottom='2rem'
-          />
-          {!user.billingInfo.payout && (
-            <Alert
-              status='info'
-              backgroundColor='puddle'
-              color='ocean'
-              fontWeight='500'
-              marginBottom='1.5rem'
-            >
-              <AlertIcon color='ocean' />
-              <Text>
-                We currently don't have a payout method for
-                you, <TextLink text='please enter in an ILP payment pointer' href='/maintainer/settings' /> to
-                begin getting paid for your maintained packages immediately.
-              </Text>
-            </Alert>
           )}
         </Card>
       </Section>

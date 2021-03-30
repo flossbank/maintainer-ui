@@ -13,6 +13,7 @@ import {
   proveRubygemsOwnership
 } from '../client/index'
 
+import BackButton from '../components/common/backButton'
 import UnderlinedHeading from '../components/common/underlinedHeading'
 import PageWrapper from '../components/common/pageWrapper'
 import Section from '../components/common/section'
@@ -84,11 +85,12 @@ const ImportPackages = () => {
         justifyItems='center'
         flexDirection='column'
         alignItems='center'
-        padding={{ base: '3rem 1.5rem', lg: '6rem 7.5rem' }}
+        padding={{ base: '3rem 1.5rem', lg: '4rem 7.5rem' }}
         backgroundColor='white'
         minHeight='90vh'
         justifyContent='center'
       >
+        <BackButton />
         <UnderlinedHeading
           text='Import packages'
           align={{ base: 'center', lg: 'center' }}
