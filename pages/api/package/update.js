@@ -7,7 +7,7 @@ export default async (req, reply) => {
       'x-requested-with': req.headers['x-requested-with'],
       cookie: req.headers.cookie
     }
-    const response = await got.put('package', {
+    const response = await got.put('package/maintainer-revenue-share', {
       json: { maintainers, packageId },
       headers: reqHeaders
     })
