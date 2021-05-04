@@ -108,7 +108,7 @@ const Dashboard = () => {
             align={{ base: 'center', lg: 'left' }}
             marginBottom='2rem'
           />
-          {!user.billingInfo.payout && (
+          {!user.payoutInfo?.ilpPointer ? (
             <Alert
               status='info'
               backgroundColor='puddle'
@@ -123,6 +123,8 @@ const Dashboard = () => {
                 begin getting paid for your maintained packages immediately.
               </Text>
             </Alert>
+          ) : (
+            <Text>Payout ILP Pointer: {user.payoutInfo.ilpPointer}</Text>
           )}
         </Card>
         <Card>
