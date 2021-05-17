@@ -73,6 +73,7 @@ const UpdateILPModal = ({ isOpen, handleUpdateIlpPointer, onClose }) => {
             )}
             <FBFormControl labelText='ILP Pointer' id='pointer' required>
               <FBTextInput
+                autoFocus
                 id='pointer'
                 type='text'
                 name='pointer'
