@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 
 const GITHUB_CLIENT_ID = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
-const githubLink = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}`
+const githubLink = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&scope=user:email`
 
 const GitHubLoginButton = ({ children, login, ...props }) => {
   const [ghState, setGhState] = useLocalStorage(localStorageGHStateKey, '')
