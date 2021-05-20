@@ -7,7 +7,7 @@ export default async (req, reply) => {
       'x-requested-with': req.headers['x-requested-with'],
       cookie: req.headers.cookie
     }
-    const response = await got.post('organization/github-auth', {
+    const response = await got.post('user/github-auth', {
       json: { code, state },
       headers: reqHeaders
     })
