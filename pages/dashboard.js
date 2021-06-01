@@ -8,6 +8,9 @@ import {
   Link,
   useDisclosure,
   ListItem,
+  Box,
+  Tooltip,
+  Icon,
   CircularProgress,
   Flex
 } from '@chakra-ui/core'
@@ -92,14 +95,30 @@ const Dashboard = () => {
         <Card marginBottom='1rem'>
           <UnderlinedHeading
             text='Wallet'
-            align={{ base: 'center', lg: 'left' }}
+            align='center'
             marginBottom='2rem'
           />
           {pendingPayoutLoading && (
             <CircularProgress isIndeterminate color='ocean' />
           )}
           {!pendingPayoutLoading && (
-            <Text>Upcoming payout: ${pendingPayout}</Text>
+            <Flex flexDirection='row' fontSize={{ base: '18px', lg: '24px' }} justifyContent='center'>
+              <Text>Upcoming payout: ${pendingPayout}</Text>
+              <Tooltip
+                label='Payouts are computed nightly, so this may not be an accurate real time amount.'
+                aria-label='A tooltip explaining that the above payout amount is computed nightly so may not be accurate'
+              >
+                <Flex flexDirection='column' justifyContent='center'>
+                  <Icon
+                    name='question'
+                    size={{ base: '1.5rem' }}
+                    marginLeft='1rem'
+                    marginRight={{ base: 0 }}
+                    marginBottom={{ base: '1.5rem', md: 0 }}
+                  />
+                </Flex>
+              </Tooltip>
+            </Flex>
           )}
         </Card>
         <Card marginBottom='1rem'>
@@ -131,17 +150,19 @@ const Dashboard = () => {
           <Flex
             flexDirection='row'
             width='100%'
-            justifyContent='space-between'
+            justifyContent={{ base: 'space-around', lg: 'space-between' }}
           >
             <UnderlinedHeading
               text='Maintained packages'
               align={{ base: 'center', lg: 'left' }}
               marginBottom='2rem'
             />
-            <FBButton height='3rem' float='right' onClick={() => router.push('/import-packages')}>
-              Import Packages
-              <AddIcon marginLeft='.5rem' />
-            </FBButton>
+            <Box display={{ base: 'none', lg: 'inline' }}>
+              <FBButton height='3rem' float='right' onClick={() => router.push('/import-packages')}>
+                Import Packages
+                <AddIcon marginLeft='.5rem' />
+              </FBButton>
+            </Box>
           </Flex>
           {ownedPkgsLoading && (
             <CircularProgress isIndeterminate color='ocean' />
