@@ -60,12 +60,18 @@ const UpdateILPModal = ({ isOpen, handleUpdateIlpPointer, onClose }) => {
             pointer to start getting paid!
           </Text>
           <TextLink
-            text='Click here to learn more about Interledger'
+            text='Click here to learn more about Interledger and ILP'
+            target='_blank'
+            href='/wallet-overview'
+          /><br />
+          <TextLink
             external
-            href='https://interledger.org/'
+            text='Click here for where to find your ILP Pointer'
+            href='https://support.uphold.com/hc/en-us/articles/360043227832-How-to-find-your-ILP-address-Interledger-payment-pointer-'
           />
           <Box
             as='form'
+            marginTop='1rem'
             onSubmit={handleSubmit(updateILPLocal)}
           >
             {error && (
