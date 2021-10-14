@@ -55,7 +55,7 @@ const FindPackagesPage = () => {
   const findPackages = (e) => findPackagesDebounce(e.target.value.trim().toLowerCase())
 
   return (
-    <PageWrapper title='Log In'>
+    <PageWrapper title='Search Packages'>
       <Section
         backgroundColor='lightRock'
         minHeight='85vh'
