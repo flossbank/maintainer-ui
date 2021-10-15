@@ -94,8 +94,16 @@ const PackagePage = () => {
     }
   }
 
+  function getPageTitle () {
+    try {
+      return pkg.name ? `${pkg.name}` : 'Flossbank'
+    } catch (e) {
+      return 'Flossbank'
+    }
+  }
+
   return (
-    <PageWrapper title='Dashboard'>
+    <PageWrapper title={getPageTitle()}>
       <Section
         backgroundColor='lightRock'
         minHeight={{ base: 'auto', lg: '90vh' }}

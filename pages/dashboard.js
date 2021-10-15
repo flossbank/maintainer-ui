@@ -143,7 +143,7 @@ const Dashboard = () => {
               </Text>
             </Alert>
           ) : (
-            <Text>Payout ILP Pointer: {user.payoutInfo.ilpPointer}</Text>
+            <Text>Payout ILP Pointer: <b>{user.payoutInfo.ilpPointer}</b></Text>
           )}
         </Card>
         <Card>
