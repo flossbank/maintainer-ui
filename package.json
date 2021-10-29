@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "node_modules/.bin/standard",
+    "lint": "standard",
     "test": "API_HOST='https://api.flossbank.com' jest"
   },
   "husky": {
