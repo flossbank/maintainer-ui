@@ -1,4 +1,4 @@
-import { PseudoBox, Box } from '@chakra-ui/core'
+import { Box } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
 /*
@@ -9,7 +9,7 @@ The default is an h2 since that is how it is used mostly in the design, but to c
 
 const UnderlinedHeading = ({ text, align, lineGap, lineColor, ...props }) => {
   return (
-    <PseudoBox textAlign={align} {...props} lineHeight={lineGap}>
+    <Box textAlign={align} {...props} lineHeight={lineGap}>
       <Box as='span' display='block' letterSpacing='1px'>
         {props.children}
         {text}
@@ -22,7 +22,7 @@ const UnderlinedHeading = ({ text, align, lineGap, lineColor, ...props }) => {
         h='0.1875rem'
         backgroundColor={lineColor}
       />
-    </PseudoBox>
+    </Box>
   )
 }
 

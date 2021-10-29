@@ -1,4 +1,4 @@
-import { Link as ChakraLink, Box } from '@chakra-ui/core'
+import { Link as ChakraLink, Box } from '@chakra-ui/react'
 import Link from 'next/link'
 import FullLogo from './fullLogo'
 import FBLogoLetters from './logoLetters'

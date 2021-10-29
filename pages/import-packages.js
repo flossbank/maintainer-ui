@@ -5,7 +5,7 @@ import {
   AlertIcon,
   Box,
   useToast
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 
 import {

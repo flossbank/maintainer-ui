@@ -1,6 +1,6 @@
 import {
   Button
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 
 const FBButton = (props) => {
   return (

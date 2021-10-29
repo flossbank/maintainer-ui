@@ -4,7 +4,7 @@ import { useLocalStorage } from './useLocalStorage'
 import { authEndpoints } from './constants'
 import * as api from '../client/index'
 
-import { Flex, Text } from '@chakra-ui/core'
+import { Flex, Text } from '@chakra-ui/react'
 
 import BouncyLoader from '../components/common/bouncyLoader'
 

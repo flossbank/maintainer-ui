@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { decode } from 'b36'
 import Recaptcha from 'react-recaptcha'
-import { Flex, Text } from '@chakra-ui/core'
+import { Flex, Text } from '@chakra-ui/react'
 
 import { useLocalStorage } from '../../utils/useLocalStorage'
 import { localStorageGHStateKey } from '../../utils/constants'

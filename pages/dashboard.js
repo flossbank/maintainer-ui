@@ -13,7 +13,7 @@ import {
   Icon,
   CircularProgress,
   Flex
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 
 import { useLocalStorage } from '../utils/useLocalStorage'
@@ -111,7 +111,7 @@ const Dashboard = () => {
                 <Flex flexDirection='column' justifyContent='center'>
                   <Icon
                     name='question'
-                    size={{ base: '1.5rem' }}
+                    w={{ base: '1.5rem' }}
                     marginLeft='1rem'
                     marginRight={{ base: 0 }}
                     marginBottom={{ base: '1.5rem', md: 0 }}

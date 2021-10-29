@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/core'
+import { Box, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 
 import Section from '../common/section'

@@ -1,5 +1,4 @@
-import { Text, ListItem } from '@chakra-ui/core'
-import { UnorderedList } from '@chakra-ui/react'
+import { UnorderedList, Text, ListItem } from '@chakra-ui/react'
 
 import PageWrapper from '../components/common/pageWrapper'
 import Section from '../components/common/section'

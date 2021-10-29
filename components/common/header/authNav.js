@@ -12,7 +12,7 @@ import {
   MenuButton,
   MenuList,
   MenuItem
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 
 const AuthNav = ({ user, onLogout }) => {
@@ -80,7 +80,7 @@ const AuthNav = ({ user, onLogout }) => {
             <Icon
               name={isExpanded ? 'chevron-up' : 'chevron-down'}
               marginLeft='.5rem'
-              size='1.5rem'
+              w='1.5rem'
             />
           </MenuButton>
           <MenuList backgroundColor='lightRock'>

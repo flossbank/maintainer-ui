@@ -5,7 +5,7 @@ import {
   Button,
   Link,
   Icon
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 
 import PageWrapper from '../components/common/pageWrapper'
 import Section from '../components/common/section'
@@ -57,7 +57,7 @@ const About = () => (
           <Button>
             <Link href='/images/flossbank_logo_assets.zip' download='flossbank_icons' padding='1rem'>
               Download assets
-              <Icon marginLeft='1rem' name='download' size='1.75rem' />
+              <Icon marginLeft='1rem' name='download' w='1.75rem' />
             </Link>
           </Button>
         </Box>

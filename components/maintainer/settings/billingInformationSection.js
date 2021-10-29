@@ -5,7 +5,7 @@ import {
   Button,
   Box,
   useDisclosure
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 
 import TextLink from '../../common/textLink'
 import SettingsCard from './settingsCard'

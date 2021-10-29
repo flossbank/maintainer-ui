@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuth } from '../../utils/useAuth'
 
-import { Flex, List, ListItem, Text, Box } from '@chakra-ui/core'
+import { Flex, List, ListItem, Text, Box } from '@chakra-ui/react'
 
 import TextLink from './textLink'
 import styles from './footer.module.scss'

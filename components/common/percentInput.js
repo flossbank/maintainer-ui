@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Flex, Input } from '@chakra-ui/core'
+import { Flex, Input } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
 const PercentInput = ({ onChange, initialValue, id, ...props }) => {

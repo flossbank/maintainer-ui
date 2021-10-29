@@ -1,4 +1,4 @@
-import { Button, Image, Link } from '@chakra-ui/core'
+import { Button, Image, Link } from '@chakra-ui/react'
 import { defaultProps } from '../../utils/defaultBtnProps'
 import { useLocalStorage } from '../../utils/useLocalStorage'
 import { localStorageGHStateKey } from '../../utils/constants'

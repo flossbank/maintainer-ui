@@ -5,7 +5,7 @@ import {
   Textarea,
   Alert,
   AlertIcon
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 
 import { useState } from 'react'
 import PropTypes from 'prop-types'

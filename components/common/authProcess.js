@@ -9,7 +9,7 @@ import {
   Heading,
   FormControl,
   FormLabel
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 
 import { useForm } from 'react-hook-form'
 
@@ -196,7 +196,7 @@ const AuthProcess = ({
           justify='space-between'
           aria-live='polite'
         >
-          <Icon name={icon} size='6rem' marginBottom='1.5rem' />
+          <Icon name={icon} w='6rem' marginBottom='1.5rem' />
           <Heading
             as='h1'
             fontSize='2rem'

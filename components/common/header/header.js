@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useAuth } from '../../../utils/useAuth'
 
-import { Box, Flex } from '@chakra-ui/core'
+import { Box, Flex } from '@chakra-ui/react'
 
 import LinkBtn from '../linkBtn'
 import TextLink from '../textLink'

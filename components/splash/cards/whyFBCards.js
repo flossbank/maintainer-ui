@@ -1,4 +1,4 @@
-import { List, ListItem, Icon, Box, Text } from '@chakra-ui/core'
+import { List, ListItem, Icon, Box, Text } from '@chakra-ui/react'
 
 const cardData = [
   {
@@ -31,7 +31,7 @@ const Card = ({ icon, text, heading }) => (
     fontSize='0.875rem'
     lineHeight='1.3'
   >
-    <Icon name={icon} size='1.5rem' margin='0rem 0 1rem 0' />
+    <Icon name={icon} w='1.5rem' margin='0rem 0 1rem 0' />
     <Box
       as='h3'
       marginBottom='1rem'

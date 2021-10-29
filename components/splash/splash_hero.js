@@ -1,4 +1,4 @@
-import { Box, Text, Flex } from '@chakra-ui/core'
+import { Box, Text, Flex } from '@chakra-ui/react'
 
 import SplashSVG from '../../public/images/splash/splash_svg.svg'
 import LinkBtn from '../common/linkBtn'

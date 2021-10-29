@@ -1,4 +1,4 @@
-import { PseudoBox, Flex } from '@chakra-ui/core'
+import { Box, Flex } from '@chakra-ui/react'
 
 import PropTypes from 'prop-types'
 import FBHead from './head'
@@ -21,7 +21,7 @@ const PageWrapper = (props) => (
     <SkipLink />
     <Flex direction='column' minH='100vh'>
       <Header />
-      <PseudoBox
+      <Box
         as='main'
         id='main-content'
         tabIndex='-1'
@@ -34,7 +34,7 @@ const PageWrapper = (props) => (
         }}
       >
         {props.children}
-      </PseudoBox>
+      </Box>
       <Footer />
     </Flex>
   </>
