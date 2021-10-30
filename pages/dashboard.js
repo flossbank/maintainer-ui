@@ -111,7 +111,7 @@ const Dashboard = () => {
                 <Flex flexDirection='column' justifyContent='center'>
                   <Icon
                     name='question'
-                    w={{ base: '1.5rem' }}
+                    boxSize='1.5rem'
                     marginLeft='1rem'
                     marginRight={{ base: 0 }}
                     marginBottom={{ base: '1.5rem', md: 0 }}

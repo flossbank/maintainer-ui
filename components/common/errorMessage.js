@@ -15,7 +15,7 @@ const ErrorMessage = ({ msg, iconSize, children, ...props }) => (
   >
     <AlertIcon
       color='#b9423a'
-      w={iconSize || '1.5rem'}
+      boxSize={iconSize || '1.5rem'}
       marginBottom={{ base: '1rem', md: 0 }}
     />
     <span>

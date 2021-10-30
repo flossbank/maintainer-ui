@@ -22,7 +22,7 @@ const Step = ({ step, i, currentStep }) => (
     <>
       <Icon
         name={step.iconName}
-        w={`${iconHeight}rem`}
+        boxSize={`${iconHeight}rem`}
         marginBottom='1rem'
       />
       <Text aria-current={i + 1 === currentStep ? 'step' : 'false'}>

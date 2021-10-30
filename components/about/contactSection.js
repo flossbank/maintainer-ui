@@ -25,7 +25,7 @@ const ContactSection = ({ contactPage, hideHeading, ...props }) => {
       {...props}
     >
       <UnderlinedHeading as={contactPage ? 'h1' : 'h2'} className={hideHeading ? 'sr-only' : ''} text='Contact Us' align='center' />
-      <Card shadowSz='lg' w='100%' maxW='45rem'>
+      <Card shadowSz='lg' boxSize='100%' maxW='45rem'>
         {!formSubmit && (
           <Text
             textTransform='uppercase'

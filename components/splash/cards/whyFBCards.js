@@ -1,25 +1,27 @@
-import { List, ListItem, Icon, Box, Text } from '@chakra-ui/react'
+import { List, ListItem, Box, Text } from '@chakra-ui/react'
+import React from 'react'
+import { DuotoneStarIcon, SmileIcon, StackIcon, GivingHandIcon } from '../../common/icons'
 
 const cardData = [
   {
     heading: 'No self promotion',
-    icon: 'duotoneStar',
+    icon: DuotoneStarIcon,
     text: 'No self promotion, no writing blog posts. Get compensated directly to your bank account if your code is used. That\'s it'
   },
   {
     heading: 'Easy',
-    icon: 'smile',
+    icon: SmileIcon,
     text:
       'Prove ownership of packages, choose your payout method, and get paid. As easy as that.'
   },
   {
     heading: 'Sustainable',
-    icon: 'stack',
+    icon: StackIcon,
     text: 'Each night, we\'ll use your registry username to ensure we are compensating you for every package you publish. Sign up once, never log in again.'
   },
   {
     heading: 'Equitable',
-    icon: 'givingHand',
+    icon: GivingHandIcon,
     text: 'If maintaining your packages is a team effort, manage distribution of package revenue through the Flossbank maintainer portal.'
   }
 ]
@@ -31,12 +33,12 @@ const Card = ({ icon, text, heading }) => (
     fontSize='0.875rem'
     lineHeight='1.3'
   >
-    <Icon name={icon} w='1.5rem' margin='0rem 0 1rem 0' />
+    {React.createElement(icon, { boxSize: '1.5rem', marginBottom: '1rem' })}
     <Box
       as='h3'
       marginBottom='1rem'
       align='left'
-      lineGap='1'
+      lineHeight='2rem'
       fontSize='24px'
       letterSpacing='1px'
       textTransform='none'

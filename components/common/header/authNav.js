@@ -80,7 +80,7 @@ const AuthNav = ({ user, onLogout }) => {
             <Icon
               name={isExpanded ? 'chevron-up' : 'chevron-down'}
               marginLeft='.5rem'
-              w='1.5rem'
+              boxSize='1.5rem'
             />
           </MenuButton>
           <MenuList backgroundColor='lightRock'>

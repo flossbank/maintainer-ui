@@ -57,7 +57,7 @@ const About = () => (
           <Button>
             <Link href='/images/flossbank_logo_assets.zip' download='flossbank_icons' padding='1rem'>
               Download assets
-              <Icon marginLeft='1rem' name='download' w='1.75rem' />
+              <Icon marginLeft='1rem' name='download' w='1.75rem' h='1.75rem' />
             </Link>
           </Button>
         </Box>

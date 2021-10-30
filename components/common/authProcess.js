@@ -196,7 +196,7 @@ const AuthProcess = ({
           justify='space-between'
           aria-live='polite'
         >
-          <Icon name={icon} w='6rem' marginBottom='1.5rem' />
+          <Icon name={icon} boxSize='6rem' marginBottom='1.5rem' />
           <Heading
             as='h1'
             fontSize='2rem'

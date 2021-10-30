@@ -22,7 +22,7 @@ const Banner = ({ icon, children, onCloseClick }) => {
     >
       <Icon
         name={icon}
-        w={{ base: '2rem', md: '3rem' }}
+        boxSize={{ base: '2rem', md: '3rem' }}
         marginRight={{ base: 0, md: '1.5rem' }}
         marginBottom={{ base: '1.5rem', md: 0 }}
       />

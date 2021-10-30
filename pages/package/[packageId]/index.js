@@ -184,7 +184,7 @@ const PackagePage = () => {
                       >
                         <Icon
                           name='question'
-                          w={{ base: '1.5rem' }}
+                          boxSize='1.5rem'
                           marginLeft='1rem'
                           marginRight={{ base: 0 }}
                           marginBottom={{ base: '1.5rem', md: 0 }}
@@ -218,7 +218,7 @@ const PackagePage = () => {
                       <Tooltip label='This is the total donation revenue this package as accumulated through Flossbank fundraising measures'>
                         <Icon
                           name='question'
-                          w={{ base: '1.5rem' }}
+                          boxSize='1.5rem'
                           marginLeft='1rem'
                           marginRight={{ base: 0 }}
                           marginBottom={{ base: '1.5rem', md: 0 }}
