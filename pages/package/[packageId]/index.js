@@ -10,9 +10,8 @@ import {
   Image,
   Tooltip,
   ListItem,
-  CircularProgress,
-  Icon
-} from '@chakra-ui/core'
+  CircularProgress
+} from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 
 import UnderlinedHeading from '../../../components/common/underlinedHeading'
@@ -25,6 +24,7 @@ import {
   getPackage,
   getSupportingPackages
 } from '../../../client'
+import { QuestionIcon } from '@chakra-ui/icons'
 
 const PackagePage = () => {
   const router = useRouter()
@@ -200,9 +200,8 @@ const PackagePage = () => {
                         label='This is the total ad revenue generated for this package'
                         aria-label='A tooltip explaining that the above ad revenue is the total ad revenue generated for this package'
                       >
-                        <Icon
-                          name='question'
-                          size={{ base: '1.5rem' }}
+                        <QuestionIcon
+                          boxSize='1.5rem'
                           marginLeft='1rem'
                           marginRight={{ base: 0 }}
                           marginBottom={{ base: '1.5rem', md: 0 }}
@@ -234,9 +233,8 @@ const PackagePage = () => {
                     >
                       Donation revenue
                       <Tooltip label='This is the total donation revenue this package as accumulated through Flossbank fundraising measures'>
-                        <Icon
-                          name='question'
-                          size={{ base: '1.5rem' }}
+                        <QuestionIcon
+                          boxSize='1.5rem'
                           marginLeft='1rem'
                           marginRight={{ base: 0 }}
                           marginBottom={{ base: '1.5rem', md: 0 }}

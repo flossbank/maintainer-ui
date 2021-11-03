@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/core'
+import { Box, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 
 import Section from '../common/section'
@@ -25,7 +25,7 @@ const ContactSection = ({ contactPage, hideHeading, ...props }) => {
       {...props}
     >
       <UnderlinedHeading as={contactPage ? 'h1' : 'h2'} className={hideHeading ? 'sr-only' : ''} text='Contact Us' align='center' />
-      <Card shadowSz='lg' w='100%' maxW='45rem'>
+      <Card shadowSz='lg' boxSize='100%' maxW='45rem'>
         {!formSubmit && (
           <Text
             textTransform='uppercase'

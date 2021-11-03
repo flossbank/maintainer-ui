@@ -6,7 +6,7 @@ import {
   ModalContent,
   Box,
   ModalHeader
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 

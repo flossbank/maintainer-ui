@@ -1,4 +1,4 @@
-import { Alert, AlertIcon } from '@chakra-ui/core'
+import { Alert, AlertIcon } from '@chakra-ui/react'
 
 const ErrorMessage = ({ msg, iconSize, children, ...props }) => (
   <Alert
@@ -15,7 +15,7 @@ const ErrorMessage = ({ msg, iconSize, children, ...props }) => (
   >
     <AlertIcon
       color='#b9423a'
-      size={iconSize || '1.5rem'}
+      boxSize={iconSize || '1.5rem'}
       marginBottom={{ base: '1rem', md: 0 }}
     />
     <span>

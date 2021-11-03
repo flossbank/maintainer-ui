@@ -10,11 +10,10 @@ import {
   ListItem,
   Box,
   Tooltip,
-  Icon,
   CircularProgress,
   Flex
-} from '@chakra-ui/core'
-import { AddIcon } from '@chakra-ui/icons'
+} from '@chakra-ui/react'
+import { AddIcon, QuestionIcon } from '@chakra-ui/icons'
 
 import { useLocalStorage } from '../utils/useLocalStorage'
 import { useAuth } from '../utils/useAuth'
@@ -109,9 +108,8 @@ const Dashboard = () => {
                 aria-label='A tooltip explaining that the above payout amount is computed nightly so may not be accurate'
               >
                 <Flex flexDirection='column' justifyContent='center'>
-                  <Icon
-                    name='question'
-                    size={{ base: '1.5rem' }}
+                  <QuestionIcon
+                    boxSize='1.5rem'
                     marginLeft='1rem'
                     marginRight={{ base: 0 }}
                     marginBottom={{ base: '1.5rem', md: 0 }}

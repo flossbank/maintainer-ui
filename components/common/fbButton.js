@@ -1,4 +1,4 @@
-import { Button } from '@chakra-ui/core'
+import { Button } from '@chakra-ui/react'
 import { defaultProps } from '../../utils/defaultBtnProps'
 import PropTypes from 'prop-types'
 

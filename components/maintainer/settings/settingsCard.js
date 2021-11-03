@@ -1,6 +1,6 @@
 import Card from '../../common/card'
 
-import { Heading } from '@chakra-ui/core'
+import { Heading } from '@chakra-ui/react'
 
 const SettingsCard = ({ headingText, children }) => (
   <Card shadowSz='lg' w='100%' maxW='50rem' marginBottom='3rem'>

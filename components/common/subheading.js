@@ -1,4 +1,4 @@
-import { Text } from '@chakra-ui/core'
+import { Text } from '@chakra-ui/react'
 
 // This is the large text in each section that sits below the underlined section title
 const Subheading = ({ align, children, ...props }) => (

@@ -7,13 +7,21 @@ import {
   useTheme,
   Box,
   Button,
-  Icon,
   Menu,
   MenuButton,
   MenuList,
   MenuItem
-} from '@chakra-ui/core'
-import { AddIcon } from '@chakra-ui/icons'
+} from '@chakra-ui/react'
+import {
+  AddIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  SearchIcon,
+  QuestionIcon,
+  SettingsIcon,
+  UnlockIcon
+} from '@chakra-ui/icons'
+import CustomIconWrapper from '../CustomIconWrapper'
 
 const AuthNav = ({ user, onLogout }) => {
   const router = useRouter()
@@ -77,11 +85,9 @@ const AuthNav = ({ user, onLogout }) => {
             >
               {user.email.charAt(0)}
             </Box>
-            <Icon
-              name={isExpanded ? 'chevron-up' : 'chevron-down'}
-              marginLeft='.5rem'
-              size='1.5rem'
-            />
+            {isExpanded
+              ? <ChevronUpIcon marginLeft='0.5rem' boxSize='1.5rem' />
+              : <ChevronDownIcon marginLeft='0.5rem' boxSize='1.5rem' />}
           </MenuButton>
           <MenuList backgroundColor='lightRock'>
             <MenuItem
@@ -92,7 +98,7 @@ const AuthNav = ({ user, onLogout }) => {
               <Link href='/dashboard'>
                 <a>
                   <Box as='span' display='flex' alignItems='center'>
-                    <Icon name='home' marginRight='.5rem' />
+                    <CustomIconWrapper icon='home' marginRight='.5rem' />
                     <span>Dashboard</span>
                   </Box>
                 </a>
@@ -106,7 +112,7 @@ const AuthNav = ({ user, onLogout }) => {
               <Link href='/find-packages'>
                 <a>
                   <Box as='span' display='flex' alignItems='center'>
-                    <Icon name='search' marginRight='.5rem' />
+                    <SearchIcon marginRight='.5rem' />
                     <span>Search packages</span>
                   </Box>
                 </a>
@@ -120,7 +126,7 @@ const AuthNav = ({ user, onLogout }) => {
               <Link href='/faq'>
                 <a>
                   <Box as='span' display='flex' alignItems='center'>
-                    <Icon name='question' marginRight='.5rem' />
+                    <QuestionIcon marginRight='.5rem' />
                     <span>FAQ</span>
                   </Box>
                 </a>
@@ -148,7 +154,7 @@ const AuthNav = ({ user, onLogout }) => {
               <Link href='/maintainer/settings'>
                 <a>
                   <Box as='span' display='flex' alignItems='center'>
-                    <Icon name='settings' marginRight='.5rem' />
+                    <SettingsIcon marginRight='.5rem' />
                     <span>Settings</span>
                   </Box>
                 </a>
@@ -162,7 +168,7 @@ const AuthNav = ({ user, onLogout }) => {
               <Link href='/'>
                 <a>
                   <Box as='span' display='flex' alignItems='center'>
-                    <Icon name='unlock' marginRight='.5rem' />
+                    <UnlockIcon marginRight='.5rem' />
                     <span>Log out</span>
                   </Box>
                 </a>

@@ -1,4 +1,4 @@
-import { Heading } from '@chakra-ui/core'
+import { Heading } from '@chakra-ui/react'
 
 // used for FAQ and How it Works page
 const FAQHeading = ({ children, ...props }) => (

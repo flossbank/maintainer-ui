@@ -1,5 +1,6 @@
-import { Box, Text, PseudoBox, List, ListItem, Icon } from '@chakra-ui/core'
+import { Box, Text, List, ListItem } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
+import CustomIconWrapper from './CustomIconWrapper'
 
 const iconHeight = 2
 const bgHeight = 0.25
@@ -20,9 +21,9 @@ const barBg = {
 const Step = ({ step, i, currentStep }) => (
   <ListItem textAlign='center' fontSize='0.875rem'>
     <>
-      <Icon
-        name={step.iconName}
-        size={`${iconHeight}rem`}
+      <CustomIconWrapper
+        icon={step.iconName}
+        boxSize={`${iconHeight}rem`}
         marginBottom='1rem'
       />
       <Text aria-current={i + 1 === currentStep ? 'step' : 'false'}>
@@ -41,7 +42,7 @@ const Step = ({ step, i, currentStep }) => (
 )
 
 const Stepper = ({ steps, currentStep = 2 }) => (
-  <PseudoBox
+  <Box
     display='flex'
     justifyItems='center'
     position='relative'
@@ -71,7 +72,7 @@ const Stepper = ({ steps, currentStep = 2 }) => (
         <Step key={i} step={stepData} i={i} currentStep={currentStep} />
       ))}
     </List>
-  </PseudoBox>
+  </Box>
 )
 
 Stepper.propTypes = {

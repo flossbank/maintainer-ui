@@ -1,8 +1,8 @@
 import {
   Flex,
-  Icon,
   CloseButton
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
+import CustomIconWrapper from './CustomIconWrapper'
 
 const Banner = ({ icon, children, onCloseClick }) => {
   return (
@@ -20,9 +20,9 @@ const Banner = ({ icon, children, onCloseClick }) => {
       borderColor='ocean'
       borderBottom='1px'
     >
-      <Icon
-        name={icon}
-        size={{ base: '2rem', md: '3rem' }}
+      <CustomIconWrapper
+        icon={icon}
+        boxSize={{ base: '2rem', md: '3rem' }}
         marginRight={{ base: 0, md: '1.5rem' }}
         marginBottom={{ base: '1.5rem', md: 0 }}
       />

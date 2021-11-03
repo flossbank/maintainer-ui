@@ -8,7 +8,7 @@ import {
   ListItem,
   Flex,
   Input
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 import debounce from 'p-debounce'
 
 import UnderlinedHeading from '../components/common/underlinedHeading'

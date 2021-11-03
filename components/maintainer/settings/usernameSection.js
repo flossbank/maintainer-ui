@@ -5,7 +5,7 @@ import {
   Button,
   Box,
   useDisclosure
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 
 import SettingsCard from './settingsCard'
 import UpdateUsernameModal from '../../dashboard/usernameModal'

@@ -1,4 +1,4 @@
-import { Input } from '@chakra-ui/core'
+import { Input } from '@chakra-ui/react'
 
 const FBTextInput = ({ id, type, register, ...props }) => (
   <Input

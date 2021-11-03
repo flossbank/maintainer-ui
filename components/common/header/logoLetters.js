@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/core'
+import { Flex } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
 const FBLogoLetters = ({ id, ...props }) => {
