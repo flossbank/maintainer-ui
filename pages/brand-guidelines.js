@@ -3,8 +3,7 @@ import {
   Text,
   Box,
   Button,
-  Link,
-  Icon
+  Link
 } from '@chakra-ui/react'
 
 import PageWrapper from '../components/common/pageWrapper'
@@ -13,6 +12,7 @@ import Card from '../components/common/card'
 import UnderlinedHeading from '../components/common/underlinedHeading'
 import TextLink from '../components/common/textLink'
 import FAQHeading from '../components/common/faqHeading'
+import { DownloadIcon } from '@chakra-ui/icons'
 
 const About = () => (
   <PageWrapper
@@ -57,7 +57,7 @@ const About = () => (
           <Button>
             <Link href='/images/flossbank_logo_assets.zip' download='flossbank_icons' padding='1rem'>
               Download assets
-              <Icon marginLeft='1rem' name='download' w='1.75rem' h='1.75rem' />
+              <DownloadIcon marginLeft='1rem' w='1.75rem' h='1.75rem' />
             </Link>
           </Button>
         </Box>

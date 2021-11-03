@@ -1,5 +1,6 @@
-import { Box, Text, List, ListItem, Icon } from '@chakra-ui/react'
+import { Box, Text, List, ListItem } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
+import CustomIconWrapper from './CustomIconWrapper'
 
 const iconHeight = 2
 const bgHeight = 0.25
@@ -20,8 +21,8 @@ const barBg = {
 const Step = ({ step, i, currentStep }) => (
   <ListItem textAlign='center' fontSize='0.875rem'>
     <>
-      <Icon
-        name={step.iconName}
+      <CustomIconWrapper
+        icon={step.iconName}
         boxSize={`${iconHeight}rem`}
         marginBottom='1rem'
       />
