@@ -102,6 +102,17 @@ const PackagePage = () => {
     }
   }
 
+  function getRegistryLink (p) {
+    switch (p.registry) {
+      case 'npm':
+        return `https://www.npmjs.com/package/${p.name}`
+      case 'rubygems':
+        return `https://rubygems.org/gems/${p.name}`
+      default:
+        return null
+    }
+  }
+
   return (
     <PageWrapper title={getPageTitle()}>
       <Section
@@ -141,6 +152,13 @@ const PackagePage = () => {
                 To increase the revenue that goes to this package, we encourage every developer to install Flossbank at
                 https://flossbank.com so the packages they install are supported at no cost to you and maintenance free.
               </Text>
+              {
+                getRegistryLink(pkg) && (
+                  <Text marginTop='1rem'>
+                    <TextLink href={getRegistryLink(pkg)} text='View this package on the registry' external />
+                  </Text>
+                )
+              }
               {userInMaintainerList() && <TextLink href={`/package/${pkg.id}/manage`} text={`Manage ${getPackageName()}'s maintainer revenue split.`} />}
             </Box>
           </Flex>
