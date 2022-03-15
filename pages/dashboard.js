@@ -50,6 +50,7 @@ const Dashboard = () => {
   const [ownedPkgsLoading, setOwnedPkgsLoading] = useState(true)
 
   const [pendingPayout, setPendingPayout] = useState('0')
+  const [totalPaidOut, setTotalPaidOut] = useState('0')
   const [pendingPayoutLoading, setPendingPayoutLoading] = useState(true)
 
   const { user } = useAuth()
@@ -62,7 +63,10 @@ const Dashboard = () => {
       if (ownedPackagesRes.success) setOwnedPkgs(ownedPackagesRes.packages)
 
       const payoutRes = await getPendingPayout()
-      if (payoutRes.success) setPendingPayout(`${payoutRes.payout.toFixed(2)}`)
+      if (payoutRes.success) {
+        if (payoutRes.pendingPayout) setPendingPayout(`${payoutRes.pendingPayout.toFixed(2)}`)
+        if (payoutRes.totalPaidOut) setTotalPaidOut(`${payoutRes.totalPaidOut.toFixed(2)}`)
+      }
     } catch (e) {
 
     } finally {
@@ -102,22 +106,41 @@ const Dashboard = () => {
             <CircularProgress isIndeterminate color='ocean' />
           )}
           {!pendingPayoutLoading && (
-            <Flex flexDirection='row' fontSize={{ base: '18px', lg: '24px' }} justifyContent='center'>
-              <Text>Upcoming payout: ${pendingPayout}</Text>
-              <Tooltip
-                label='Payouts are computed nightly, so this may not be an accurate real time amount.'
-                aria-label='A tooltip explaining that the above payout amount is computed nightly so may not be accurate'
-              >
-                <Flex flexDirection='column' justifyContent='center'>
-                  <Icon
-                    name='question'
-                    size={{ base: '1.5rem' }}
-                    marginLeft='1rem'
-                    marginRight={{ base: 0 }}
-                    marginBottom={{ base: '1.5rem', md: 0 }}
-                  />
-                </Flex>
-              </Tooltip>
+            <Flex flexDirection={{ base: 'column', lg: 'row' }} fontSize={{ base: '18px', lg: '24px' }} justifyContent='space-around'>
+              <Box display='flex' flexDirection='row'>
+                <Text>Upcoming payout: ${pendingPayout}</Text>
+                <Tooltip
+                  label='Payouts are computed nightly, so this may not be an accurate real time amount.'
+                  aria-label='A tooltip explaining that the above payout amount is computed nightly so may not be accurate'
+                >
+                  <Flex flexDirection='column' justifyContent='center'>
+                    <Icon
+                      name='question'
+                      size={{ base: '1.5rem' }}
+                      marginLeft='1rem'
+                      marginRight={{ base: 0 }}
+                      marginBottom={{ base: '1.5rem', md: 0 }}
+                    />
+                  </Flex>
+                </Tooltip>
+              </Box>
+              <Box display='flex' flexDirection='row'>
+                <Text>Total paid out: ${totalPaidOut}</Text>
+                <Tooltip
+                  label='This is the total amount that has hit your uphold wallet.'
+                  aria-label='A tooltip explaining that the above amount is how much has actually hit the maintainers wallet'
+                >
+                  <Flex flexDirection='column' justifyContent='center'>
+                    <Icon
+                      name='question'
+                      size={{ base: '1.5rem' }}
+                      marginLeft='1rem'
+                      marginRight={{ base: 0 }}
+                      marginBottom={{ base: '1.5rem', md: 0 }}
+                    />
+                  </Flex>
+                </Tooltip>
+              </Box>
             </Flex>
           )}
         </Card>
