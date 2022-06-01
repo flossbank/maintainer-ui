@@ -1,19 +1,11 @@
-import { Box, Text } from '@chakra-ui/core'
-import { useState } from 'react'
+import { Text } from '@chakra-ui/core'
 
 import Section from '../common/section'
 import Card from '../common/card'
+import TextLink from '../common/textLink'
 import UnderlinedHeading from '../common/underlinedHeading'
 
-import ContactForm from './contactForm'
-
 const ContactSection = ({ contactPage, hideHeading, ...props }) => {
-  const [formSubmit, setFormSubmit] = useState(false)
-
-  const contactFormSubmitted = () => {
-    setFormSubmit(true)
-  }
-
   return (
     <Section
       display='flex'
@@ -26,22 +18,15 @@ const ContactSection = ({ contactPage, hideHeading, ...props }) => {
     >
       <UnderlinedHeading as={contactPage ? 'h1' : 'h2'} className={hideHeading ? 'sr-only' : ''} text='Contact Us' align='center' />
       <Card shadowSz='lg' w='100%' maxW='45rem'>
-        {!formSubmit && (
-          <Text
-            textTransform='uppercase'
-            textAlign={{ base: 'center', lg: 'left' }}
-            color='ocean'
-            fontWeight='bold'
-            fontSize='0.875rem'
-            marginBottom='2.5rem'
-          >
-            <Box as='span' display={{ base: 'block', md: 'inline-block' }}>
-              Want to get in touch?{' '}
-            </Box>
-            <Box as='span'> Drop us a line.</Box>
-          </Text>
-        )}
-        <ContactForm contactFormSubmitted={contactFormSubmitted} />
+        <Text>
+        You can email us directly at{' '}
+          <TextLink
+            text='support@flossbank.com'
+            external
+            href='mailto:support@flossbank.com'
+          />
+        .
+        </Text>
       </Card>
     </Section>
   )

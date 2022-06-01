@@ -8,14 +8,6 @@ import styles from './footer.module.scss'
 
 const loggedOutTopLinks = [
   {
-    url: '/login',
-    text: 'Log In'
-  },
-  {
-    url: '/signup',
-    text: 'Sign Up'
-  },
-  {
     url: '/brand-guidelines',
     text: 'Brand Guidelines'
   },
